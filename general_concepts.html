@@ -115,15 +115,15 @@
 <h1>2. Machine Learning 101<a class="headerlink" href="#machine-learning-101" title="Permalink to this headline">¶</a></h1>
 <p>Machine Learning is about building <strong>programs with tunable parameters</strong>
 (typically an array of floating point values) that are adjusted
-automatically so as to improve its behavior by <strong>adapting to
+automatically so as to improve their behavior by <strong>adapting to
 previously seen data</strong>.</p>
 <p>Machine Learning can be considered a <strong>subfield of Artificial
 Intelligence</strong> since those algorithms can be seen as building blocks
-to make computer learn to behave more intelligently by somehow
+to make computers learn to behave more intelligently by somehow
 <strong>generalizing</strong> rather that just storing and retrieving data items
 like a database system would do.</p>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/decision_boundary3.png"><img alt="images/decision_boundary3.png" src="images/decision_boundary3.png" style="width: 256.0px; height: 200.5px;" /></a>
+<a class="reference internal image-reference" href="images/decision_boundary.png"><img alt="images/decision_boundary.png" src="images/decision_boundary.png" style="width: 256.0px; height: 200.5px;" /></a>
 <p class="caption">Decision boundary learned from data points from two categories:
 white and black</p>
 </div>
@@ -158,15 +158,15 @@ describe each item in a quantitative manner.</td>
 <p>The number of features must be fixed in advance. However it can be
 very high dimensional (e.g. millions of features) with most of them
 being zeros for a given sample. In this case we use <tt class="docutils literal"><span class="pre">scipy.sparse</span></tt>
-matrices instead of <tt class="docutils literal"><span class="pre">numpy</span></tt> arrays so has to make the data fit
+matrices instead of <tt class="docutils literal"><span class="pre">numpy</span></tt> arrays so as to make the data fit
 in memory.</p>
 <div class="section" id="a-simple-example-the-iris-dataset">
 <h3>2.1.1. A simple example: the iris dataset<a class="headerlink" href="#a-simple-example-the-iris-dataset" title="Permalink to this headline">¶</a></h3>
 <p>The machine learning community often uses a simple flowers database
-were each row in the database (or CSV file) is a set of measurements
+where each row in the database (or CSV file) is a set of measurements
 of an individual iris flower.</p>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/Virginia_Iris4.png"><img alt="Photo of Iris Virginia" src="images/Virginia_Iris4.png" style="width: 200.0px; height: 162.0px;" /></a>
+<a class="reference internal image-reference" href="images/Virginia_Iris.png"><img alt="Photo of Iris Virginia" src="images/Virginia_Iris.png" style="width: 200.0px; height: 162.0px;" /></a>
 <p class="caption">Iris Virginia (source: Wikipedia)</p>
 </div>
 <p>Each sample in this dataset is described by 4 features and can
@@ -208,7 +208,7 @@ helper function to load it into numpy arrays:</p>
 <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> and <tt class="docutils literal"><span class="pre">...</span></tt> prompt signs, enable the ipython doctest mode with:
 <tt class="docutils literal"><span class="pre">%doctest_mode</span></tt></p>
 </div>
-<p>The features of each sample flower is stored in the <tt class="docutils literal"><span class="pre">data</span></tt> attribute
+<p>The features of each sample flower are stored in the <tt class="docutils literal"><span class="pre">data</span></tt> attribute
 of the dataset:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n_samples</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 
@@ -237,7 +237,7 @@ of the dataset:</p>
 <span class="go">       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2])</span>
 </pre></div>
 </div>
-<p>The names of the classes is stored in the last attribute, namely
+<p>The names of the classes are stored in the last attribute, namely
 <tt class="docutils literal"><span class="pre">target_names</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
 <span class="go">[&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;]</span>
@@ -273,7 +273,7 @@ category is matching or <tt class="docutils literal"><span class="pre">0.0</span
 <div class="section" id="extracting-features-from-unstructured-data">
 <h3>2.1.3. Extracting features from unstructured data<a class="headerlink" href="#extracting-features-from-unstructured-data" title="Permalink to this headline">¶</a></h3>
 <p>The previous example deals with features that are readily available
-in a structured datasets with rows and columns of numerical or
+in a structured dataset with rows and columns of numerical or
 categorical values.</p>
 <p>However, <strong>most of the produced data is not readily available in a
 structured representation</strong> such as SQL, CSV, XML, JSON or RDF.</p>
@@ -285,8 +285,8 @@ into arrays of numerical features.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field"><th class="field-name">Text documents:</th><td class="field-body"><p class="first">Count the frequency of each word or pair of consecutive words
-in each document. This approach is called the <strong>Bag of Words</strong>.</p>
-<p>Note: we include other files formats such as HTML and PDF in
+in each document. This approach is called <strong>Bag of Words</strong>.</p>
+<p>Note: we include other file formats such as HTML and PDF in
 this category: an ad-hoc preprocessing step is required to
 extract the plain text in UTF-8 encoding for instance.</p>
 </td>
@@ -301,7 +301,7 @@ pixel, wavelets transforms...)</p>
 <li><p class="first">Compute the Euclidean, Manhattan or cosine <strong>similarities of
 the sample to a set reference prototype images</strong> aranged in a
 code book.  The code book may have been previously extracted
-on the same dataset using an unsupervised learning algorithms
+from the same dataset using an unsupervised learning algorithm
 on the raw pixel signal.</p>
 <p>Each feature value is the distance to one element of the code
 book.</p>
@@ -309,13 +309,13 @@ book.</p>
 <li><p class="first">Perform <strong>local feature extraction</strong>: split the picture into
 small regions and perform feature extraction locally in each
 area.</p>
-<p>Then combine all the feature of the individual areas into a
+<p>Then combine all the features of the individual areas into a
 single array.</p>
 </li>
 </ul>
 </td>
 </tr>
-<tr class="field"><th class="field-name">Sounds:</th><td class="field-body"><p class="first last">Same strategy as for images with in a 1D space instead of 2D</p>
+<tr class="field"><th class="field-name">Sounds:</th><td class="field-body"><p class="first last">Same strategy as for images within a 1D space instead of 2D</p>
 </td>
 </tr>
 </tbody>
@@ -328,7 +328,7 @@ will be presented in the last sections of this tutorial.</p>
 <div class="section" id="supervised-learning-model-fit-x-y">
 <h2>2.2. Supervised Learning: <tt class="docutils literal"><span class="pre">model.fit(X,</span> <span class="pre">y)</span></tt><a class="headerlink" href="#supervised-learning-model-fit-x-y" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/supervised4.png"><img alt="Flow diagram for supervised learning" src="images/supervised4.png" style="width: 517.5px; height: 317.25px;" /></a>
+<a class="reference internal image-reference" href="images/supervised.png"><img alt="Flow diagram for supervised learning" src="images/supervised.png" style="width: 517.5px; height: 317.25px;" /></a>
 <p class="caption">Supervised Learning overview</p>
 </div>
 <p>A supervised learning algorithm makes the distinction between the
@@ -363,22 +363,22 @@ petals and sepals. This is a classification task, hence we have:</p>
 </div>
 <p>Once the data has this format it is trivial to train a classifier,
 for instance a support vector machine with a linear kernel (or lack
-of thereof):</p>
+thereof):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Whenever you import a scikit-learn class or function of the first time,
+<p class="last">Whenever you import a scikit-learn class or function for the first time,
 you are advised to read the docstring by using the <tt class="docutils literal"><span class="pre">?</span></tt> magic suffix
 of ipython, for instance type: <tt class="docutils literal"><span class="pre">LinearSVC?</span></tt>.</p>
 </div>
 <p><tt class="docutils literal"><span class="pre">clf</span></tt> is a statistical model that has parameters that control the
 learning algorithm (those parameters are sometimes called the
-hyper-parameters). Those hyperparameters can be supplied by the
-user in the constructore of the model. We will explain later choose
-a good combination either using simple empirical rules or data
+hyperparameters). Those hyperparameters can be supplied by the
+user in the constructor of the model. We will explain later how to choose
+a good combination using either simple empirical rules or data
 driven selection:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span>
 <span class="go">LinearSVC(loss=&#39;l2&#39;, C=1.0, intercept_scaling=1, fit_intercept=True,</span>
@@ -386,7 +386,7 @@ driven selection:</p>
 </pre></div>
 </div>
 <p>By default the real model parameters are not initialized. They will be
-automatically be tuned from the data by calling the <tt class="docutils literal"><span class="pre">fit</span></tt> method:</p>
+tuned automatically from the data by calling the <tt class="docutils literal"><span class="pre">fit</span></tt> method:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span>
@@ -407,17 +407,17 @@ like the first sample of the iris dataset:</p>
 <span class="go">array([0], dtype=int32)</span>
 </pre></div>
 </div>
-<p>The outcome is <tt class="docutils literal"><span class="pre">0</span></tt> which the id of the first iris class namely
+<p>The outcome is <tt class="docutils literal"><span class="pre">0</span></tt> which the id of the first iris class, namely
 &#8216;setosa&#8217;.</p>
-<p>The following figure places the location of the fit and predict
+<p>The following figure places the location of the <tt class="docutils literal"><span class="pre">fit</span></tt> and <tt class="docutils literal"><span class="pre">predict</span></tt>
 calls on the previous flow diagram. The <tt class="docutils literal"><span class="pre">vec</span></tt> object is a vectorizer
 used for feature extractor that is not used in the case of the iris
 data which already comes as vectors of features:</p>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/supervised_scikit_learn4.png"><img alt="Flow diagram for supervised learning with scikit-learn" src="images/supervised_scikit_learn4.png" style="width: 513.75px; height: 363.0px;" /></a>
+<a class="reference internal image-reference" href="images/supervised_scikit_learn.png"><img alt="Flow diagram for supervised learning with scikit-learn" src="images/supervised_scikit_learn.png" style="width: 494.25px; height: 363.0px;" /></a>
 <p class="caption">Supervised Learning with scikit-learn</p>
 </div>
-<p>Some <tt class="docutils literal"><span class="pre">scikit-learn</span></tt> classifiers can further predicts probabilities
+<p>Some <tt class="docutils literal"><span class="pre">scikit-learn</span></tt> classifiers can further predict probabilities
 of the outcome.  This is the case of logistic regression models:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf2</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -432,12 +432,12 @@ of the outcome.  This is the case of logistic regression models:</p>
 <p>This means that the model estimates that the sample in <tt class="docutils literal"><span class="pre">X_new</span></tt> has:</p>
 <blockquote>
 <div><ul class="simple">
-<li>90% likelyhood to be belong to the &#8216;setosa&#8217; class</li>
-<li>9% likelyhood to be belong to the &#8216;versicolor&#8217; class</li>
-<li>1% likelyhood to be belong to the &#8216;virginica&#8217; class</li>
+<li>90% likelyhood to belong to the &#8216;setosa&#8217; class</li>
+<li>9% likelyhood to belong to the &#8216;versicolor&#8217; class</li>
+<li>1% likelyhood to belong to the &#8216;virginica&#8217; class</li>
 </ul>
 </div></blockquote>
-<p>Of course the <tt class="docutils literal"><span class="pre">predict</span></tt> method that output the label id of the
+<p>Of course, the <tt class="docutils literal"><span class="pre">predict</span></tt> method that outputs the label id of the
 most likely outcome is also available:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">clf2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
 <span class="go">array([0], dtype=int32)</span>
@@ -494,14 +494,14 @@ for some common engineering tasks:</p>
 <tr><td>News articles categorization</td>
 <td>Business, technology, sports...</td>
 </tr>
-<tr><td>Sentiment Analysis in customer feedback</td>
+<tr><td>Sentiment analysis in customer feedback</td>
 <td>Negative, neutral, positive</td>
 </tr>
 <tr><td>Face verification in pictures</td>
-<td>Same / different persons</td>
+<td>Same / different person</td>
 </tr>
-<tr><td>Speaker verification on voice recordings</td>
-<td>Same / different persons</td>
+<tr><td>Speaker verification in voice recordings</td>
+<td>Same / different person</td>
 </tr>
 </tbody>
 </table>
@@ -509,10 +509,10 @@ for some common engineering tasks:</p>
 </div>
 <div class="section" id="regression">
 <h3>2.2.2. Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h3>
-<p>Regression is the task to predict the value of a continuously varying
+<p>Regression is the task of predicting the value of a continuously varying
 variable (e.g. a price, a temperature, a conversion rate...) given
 some input variables (a.k.a. the features, &#8220;predictors&#8221; or
-&#8220;regressors&#8221;). Some notable implementations of regression model in
+&#8220;regressors&#8221;). Some notable implementations of regression models in
 <tt class="docutils literal"><span class="pre">scikit-learn</span></tt> include:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -547,7 +547,7 @@ Stochastic Gradient Descent</td>
 <div class="section" id="unsupervised-learning-model-fit-x">
 <h2>2.3. Unsupervised Learning: <tt class="docutils literal"><span class="pre">model.fit(X)</span></tt><a class="headerlink" href="#unsupervised-learning-model-fit-x" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/unsupervised4.png"><img alt="Flow diagram for unsupervised learning" src="images/unsupervised4.png" style="width: 522.0px; height: 302.25px;" /></a>
+<a class="reference internal image-reference" href="images/unsupervised.png"><img alt="Flow diagram for unsupervised learning" src="images/unsupervised.png" style="width: 522.0px; height: 302.25px;" /></a>
 <p class="caption">Unsupervised Learning overview</p>
 </div>
 <p>An unsupervised learning algorithm only uses a single set of
@@ -556,10 +556,10 @@ not use any kind of labels.</p>
 <p>An unsupervised learning model will try to fit its parameters so
 as to best summarize regularities found in the data.</p>
 <p>The following introduces the main variants of unsupervised learning
-algorithms namely dimensionality reduction and clustering.</p>
+algorithms, namely dimensionality reduction and clustering.</p>
 <div class="section" id="dimensionality-reduction-and-visualization">
 <h3>2.3.1. Dimensionality Reduction and visualization<a class="headerlink" href="#dimensionality-reduction-and-visualization" title="Permalink to this headline">¶</a></h3>
-<p>Dimensionality reduction the task to derive a set of <strong>new artificial
+<p>Dimensionality reduction is the task of deriving a set of <strong>new artificial
 features</strong> that is <strong>smaller</strong> than the original feature set while
 retaining <strong>most of the variance</strong> of the original data.</p>
 <div class="section" id="normalization-and-visualization-with-pca">
@@ -621,22 +621,23 @@ following utility function:</p>
 <span class="gp">... </span>        <span class="n">pl</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <span class="gp">... </span>                   <span class="n">c</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 <span class="gp">... </span>    <span class="n">pl</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <span class="gp">...</span>
 </pre></div>
 </div>
 <p>Calling <tt class="docutils literal"><span class="pre">plot_2D(X_pca,</span> <span class="pre">iris.target,</span> <span class="pre">iris.target_names)</span></tt> will
 display the following:</p>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/iris_pca_2d4.png"><img alt="2D PCA projection of the iris dataset" src="images/iris_pca_2d4.png" style="width: 520.0px; height: 390.0px;" /></a>
+<a class="reference internal image-reference" href="images/iris_pca_2d.png"><img alt="2D PCA projection of the iris dataset" src="images/iris_pca_2d.png" style="width: 520.0px; height: 390.0px;" /></a>
 <p class="caption">2D PCA projection of the iris dataset</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>The default implementation of PCA computes the SVD of the full
-data matrix which is not scalable when both <tt class="docutils literal"><span class="pre">n_samples</span></tt> and
+data matrix, which is not scalable when both <tt class="docutils literal"><span class="pre">n_samples</span></tt> and
 <tt class="docutils literal"><span class="pre">n_features</span></tt> are big (more that a few thousands).</p>
 <p class="last">If you are interested in a number of components that is much
-smaller than both <tt class="docutils literal"><span class="pre">n_samples</span></tt> and <tt class="docutils literal"><span class="pre">n_features</span></tt> consider using
+smaller than both <tt class="docutils literal"><span class="pre">n_samples</span></tt> and <tt class="docutils literal"><span class="pre">n_features</span></tt>, consider using
 <tt class="docutils literal"><span class="pre">scikits.learn.pca.RandomizedPCA</span></tt> instead.</p>
 </div>
 </div>
@@ -645,7 +646,7 @@ smaller than both <tt class="docutils literal"><span class="pre">n_samples</span
 <p>Dimensionality Reduction is not just useful for visualization of
 high dimensional datasets. It can also be used as a preprocessing
 step (often called data normalization) to help speed up supervised
-machine learning that are not computationally efficient with high
+machine learning methods that are not computationally efficient with high
 <tt class="docutils literal"><span class="pre">n_features</span></tt> such as SVM classifiers with gaussian kernels for
 instance or that do not work well with linearly correlated features.</p>
 <div class="admonition note">
@@ -662,7 +663,7 @@ manifold extraction strategies.</p>
 samples according to some predefined similarity or dissimilarity
 measure (such as the Euclidean distance).</p>
 <p>For instance let us reuse the output of the 2D PCA of the iris
-dataset and try to find 3 groups of samples using the slimplest
+dataset and try to find 3 groups of samples using the simplest
 clustering algorithm (KMeans):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">RandomState</span>
@@ -689,21 +690,21 @@ with:</p>
 </pre></div>
 </div>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/iris_pca_2d_kmeans4.png"><img alt="KMeans cluster assignements on 2D PCA iris data" src="images/iris_pca_2d_kmeans4.png" style="width: 520.0px; height: 390.0px;" /></a>
+<a class="reference internal image-reference" href="images/iris_pca_2d_kmeans.png"><img alt="KMeans cluster assignements on 2D PCA iris data" src="images/iris_pca_2d_kmeans.png" style="width: 520.0px; height: 390.0px;" /></a>
 <p class="caption">KMeans cluster assignements on 2D PCA iris data</p>
 </div>
 <div class="section" id="notable-implementations-of-clustering-models">
 <h4>2.3.2.1. Notable implementations of clustering models<a class="headerlink" href="#notable-implementations-of-clustering-models" title="Permalink to this headline">¶</a></h4>
-<p>The following are two well known clustering algorithms. Like most
+<p>The following are two well-known clustering algorithms. Like most
 unsupervised learning models in the scikit, they expect the data
-to be cluster to have shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></tt>:</p>
+to be clustered to have the shape <tt class="docutils literal"><span class="pre">(n_samples,</span> <span class="pre">n_features)</span></tt>:</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field"><th class="field-name" colspan="2"><tt class="docutils literal"><span class="pre">scikits.learn.cluster.KMeans</span></tt>:</th></tr>
-<tr><td>&nbsp;</td><td class="field-body">The simplest yet effective clustering algorithm. Need to be
-provided the number of clusters in advance and assume that the
+<tr><td>&nbsp;</td><td class="field-body">The simplest yet effective clustering algorithm. Needs to be
+provided with the number of clusters in advance, and assumes that the
 data is normalized as input (but use a PCA model as preprocessor).</td>
 </tr>
 <tr class="field"><th class="field-name" colspan="2"><tt class="docutils literal"><span class="pre">scikits.learn.cluster.MeanShift</span></tt>:</th></tr>
@@ -752,7 +753,7 @@ feature extraction for supervised learning algorithms</li>
 <p>Some supervised learning problems can be solved by very simple
 models (called generalized linear models) depending on the data.
 Others simply don&#8217;t.</p>
-<p>To grasp the difference between the two cases run the interactive
+<p>To grasp the difference between the two cases, run the interactive
 example from the <tt class="docutils literal"><span class="pre">examples</span></tt> folder of the <tt class="docutils literal"><span class="pre">scikit-learn</span></tt> source
 distribution:</p>
 <div class="highlight-python"><pre>% python $SKL_HOME/examples/applications/svm_gui.py</pre>
@@ -767,15 +768,15 @@ is 2).</li>
 The accurracy of the model is displayed on stdout.</li>
 </ol>
 <p>The following figures demonstrate one case where a linear model can
-perflectly separate the two classes while the other is not linearly
+perfectly separate the two classes while the other is not linearly
 separable (a model with a gaussian kernel is required in that case).</p>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/linearly_separable_data4.png"><img alt="images/linearly_separable_data4.png" src="images/linearly_separable_data4.png" style="width: 489.75px; height: 455.25px;" /></a>
-<p class="caption">Linear Support Vector Machine trained to perflectly separate 2
+<a class="reference internal image-reference" href="images/linearly_separable_data.png"><img alt="images/linearly_separable_data.png" src="images/linearly_separable_data.png" style="width: 489.75px; height: 455.25px;" /></a>
+<p class="caption">Linear Support Vector Machine trained to perfectly separate 2
 sets of data points labeled as white and black in a 2D space.</p>
 </div>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="images/non_linearly_separable_data4.png"><img alt="images/non_linearly_separable_data4.png" src="images/non_linearly_separable_data4.png" style="width: 490.5px; height: 456.0px;" /></a>
+<a class="reference internal image-reference" href="images/non_linearly_separable_data.png"><img alt="images/non_linearly_separable_data.png" src="images/non_linearly_separable_data.png" style="width: 490.5px; height: 456.0px;" /></a>
 <p class="caption">Support Vector Machine with gaussian kernel trained to separate
 2 sets of data points labeled as white and black in a 2D space.
 This dataset would not have been seperated by a simple linear
@@ -797,7 +798,7 @@ the XOR problem is composed of 4 samples:</p>
 </td>
 </tr>
 <tr class="field"><th class="field-name">Exercise:</th><td class="field-body"><p class="first last">Construct a problem with less than 10 points where the predictive
-accurracy of the best linear model is 50%.</p>
+accuracy of the best linear model is 50%.</p>
 </td>
 </tr>
 </tbody>
@@ -807,7 +808,7 @@ accurracy of the best linear model is 50%.</p>
 <h2>2.5. Training set, test set and overfitting<a class="headerlink" href="#training-set-test-set-and-overfitting" title="Permalink to this headline">¶</a></h2>
 <p>The most common mistake beginners do when training statistical
 models is to evaluate the quality of the model on the same data
-using for fitting the model:</p>
+used for fitting the model:</p>
 <blockquote>
 <div>If you do this, <strong>you are doing it wrong!</strong></div></blockquote>
 <div class="section" id="the-overfitting-issue">
@@ -889,16 +890,16 @@ the split:</p>
 </pre></div>
 </div>
 <p>To evaluate its quality we can compute the average number of correct
-classification on the test set:</p>
+classifications on the test set:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
 <span class="go">1.0</span>
 </pre></div>
 </div>
 <p>This shows that the model has a predictive accurracy of 100% which
-means that the classification model was perfectly capable on
+means that the classification model was perfectly capable of
 generalizing what was learned from the training set to the test
 set: this is rarely so easy on real life datasets as we will see
-on the following chapter.</p>
+in the following chapter.</p>
 </div>
 </div>
 <div class="section" id="key-takeaway-points">
@@ -923,7 +924,7 @@ on the following chapter.</p>
 <li>Simple linear models can fail completely (non linearly separable data)</li>
 <li>Simple linear models often very useful in practice (esp. with
 large <tt class="docutils literal"><span class="pre">n_features</span></tt>)</li>
-<li>Before starting to training a model: split train / test data:<ul>
+<li>Before starting to train a model: split train / test data:<ul>
 <li>use training set for model selection and fitting</li>
 <li>use test set for model evaluation</li>
 </ul>
