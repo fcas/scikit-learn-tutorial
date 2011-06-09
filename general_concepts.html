@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. Machine Learning 101 &mdash; scikit-learn tutorial v0.1 documentation</title>
+    <title>2. Machine Learning 101 &mdash; scikit-learn tutorial v0.9 documentation</title>
     <link rel="stylesheet" href="static/nature.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1',
+        VERSION:     '0.9',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="shortcut icon" href="static/favicon.ico"/>
-    <link rel="top" title="scikit-learn tutorial v0.1 documentation" href="index.html" />
+    <link rel="top" title="scikit-learn tutorial v0.9 documentation" href="index.html" />
     <link rel="next" title="3. Working with text data" href="working_with_text_data.html" />
     <link rel="prev" title="1. Tutorial setup" href="setup.html" /> 
   </head>
@@ -362,8 +362,7 @@ petals and sepals. This is a classification task, hence we have:</p>
 </pre></div>
 </div>
 <p>Once the data has this format it is trivial to train a classifier,
-for instance a support vector machine with a linear kernel (or lack
-thereof):</p>
+for instance a support vector machine with a linear kernel:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">()</span>
 </pre></div>
@@ -703,7 +702,7 @@ to be clustered to have the shape <tt class="docutils literal"><span class="pre"
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field"><th class="field-name" colspan="2"><tt class="docutils literal"><span class="pre">scikits.learn.cluster.KMeans</span></tt>:</th></tr>
-<tr><td>&nbsp;</td><td class="field-body">The simplest yet effective clustering algorithm. Needs to be
+<tr><td>&nbsp;</td><td class="field-body">The simplest, yet effective clustering algorithm. Needs to be
 provided with the number of clusters in advance, and assumes that the
 data is normalized as input (but use a PCA model as preprocessor).</td>
 </tr>
@@ -820,8 +819,8 @@ without generalizing. The symptoms are:</p>
 <div><ul class="simple">
 <li>the predictive accurracy on the data used for training can be excellent
 (sometimes 100%)</li>
-<li>however they do little better than random prediction when facing
-new data not part of the training set</li>
+<li>however, the models do little better than random prediction when facing
+new data that was not part of the training set</li>
 </ul>
 </div></blockquote>
 <p>If you evaluate your model on your training data you won&#8217;t be able to tell
@@ -847,6 +846,16 @@ parameter of the model if available (see the docstring of the
 model for details)</li>
 </ol>
 </div></blockquote>
+<p>An even better option when experimenting with classifiers is to divide
+the data into three sets: training, testing and holdout. You can then
+optimize your features, settings and algorithms for the testing set until
+they seem good enough, and finally test on the holdout set (perhaps after
+adding the test set to the training set).</p>
+<p>When the amount of labeled data available is small, it may not be feasible
+to construct training and test sets. In that case, use <strong>cross validation</strong>:
+divide the dataset into ten parts of (roughly) equal size, then for each of
+these ten parts, train the classifier on the other nine and test on the
+held-out part.</p>
 </div>
 <div class="section" id="measuring-classification-performance-on-a-test-set">
 <h3>2.5.3. Measuring classification performance on a test set<a class="headerlink" href="#measuring-classification-performance-on-a-test-set" title="Permalink to this headline">¶</a></h3>
@@ -927,6 +936,7 @@ large <tt class="docutils literal"><span class="pre">n_features</span></tt>)</li
 <li>Before starting to train a model: split train / test data:<ul>
 <li>use training set for model selection and fitting</li>
 <li>use test set for model evaluation</li>
+<li>use cross-validation when your dataset is small</li>
 </ul>
 </li>
 <li>Complex models can overfit (learn by heart) the training data and
@@ -948,9 +958,9 @@ fail to generalize correctly on test data:<ul>
     </div>
 
     <div class="footer">
-        <p style="text-align: center">This documentation is relative
-        to scikit-learn tutorial version 0.1<p>
-        &copy; 2010, scikits.learn developers (BSD License).
+        <p style="text-align: center">This tutorial is for scikit-learn
+        version 0.9<p>
+        &copy; 2010–2011, scikits.learn developers (BSD License).
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     </div>
   </body>
