@@ -42,7 +42,8 @@ needs to be preprocessed to be used by the scikit.
         >>> digits.images.shape
         (1797, 8, 8)
         >>> import pylab as pl
-        >>> pl.imshow(digits.images[0], cmap=pl.cm.gray_r)
+        >>> pl.imshow(digits.images[0], cmap=pl.cm.gray_r) #doctest: +ELLIPSIS
+        <matplotlib.image.AxesImage object at ...>
 
     To use this dataset with the scikit, we transform each 8x8 image in a
     feature vector of length 64 ::
@@ -52,6 +53,17 @@ needs to be preprocessed to be used by the scikit.
 
 Estimators objects
 ===================
+
+.. Some code to make the doctests run
+
+   >>> from scikits.learn.base import BaseEstimator
+   >>> class Estimator(BaseEstimator):
+   ...      def __init__(self, param1=0, param2=0):
+   ...          self.param1 = param1
+   ...          self.param2 = param2
+   ...      def fit(self, data):
+   ...          pass
+   >>> estimator = Estimator()
 
 **Fitting data**: The core object of the `scikits.learn` is the
 `estimator` object. All estimator objects expose a `fit` method, that
@@ -71,6 +83,6 @@ parameters are estimated from the data at hand. All the estimated
 parameters are attributes of the estimator object ending by an
 underscore::
 
-    >>> estimator.estimated_param_
+    >>> estimator.estimated_param_ #doctest: +SKIP
 
 
