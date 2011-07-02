@@ -42,6 +42,9 @@ Nearest neighbor and the curse of dimensionality
         >>> np.unique(y)
         array([0, 1, 2])
 
+k-Nearest neigbhors classifier
+-------------------------------
+
 The simplest possible classifier is the nearesr neighbor: given a new
 observation `x_test`, find in the training set -the data used to train
 the estimator- the observation with the closest feature vector.
@@ -75,6 +78,21 @@ the estimator- the observation with the closest feature vector.
     >>> y_test
     array([1, 1, 1, 0, 0, 0, 2, 1, 2, 0])
 
+The curse of dimensionality
+-------------------------------
+
+If the data is only described by one feature, with values ranging from 0
+to 1, with `n` train observations, new data will no further away than
+`1/n` and the nearest neighbor decision rule will be efficient as soon as
+`1/n` is small compared to the scale of between-class feature variations.
+
+If the number of features is `p`, the number of training samples to pave
+the `[0, 1]` space with a between-point distance of `d`, is `1/d**p`.
+This number scales exponentialy `p`, the dimensionality of the problem.
+
+In other words, the prediction problem becomes much harder for
+high-dimensional data. This is called the **curse of dimensionality** and
+is the core problem that machine learning addresses.
 
 Linear model: from regression to sparsity
 ==========================================
