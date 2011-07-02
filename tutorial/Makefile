@@ -7,6 +7,8 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
+NOSETESTS ?= nosetests
+
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -92,9 +94,8 @@ linkcheck:
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
 doctest:
-	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
-	@echo "Testing of doctests in the sources finished, look at the " \
-	      "results in $(BUILDDIR)/doctest/output.txt."
+	$(NOSETESTS) -s --with-doctest --doctest-tests --doctest-extension=rst \
+	--doctest-fixtures=_fixture doc/modules/
 
 github:
 	@echo "Send to github"
