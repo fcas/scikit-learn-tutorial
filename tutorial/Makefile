@@ -94,8 +94,7 @@ linkcheck:
 	      "or in $(BUILDDIR)/linkcheck/output.txt."
 
 doctest:
-	$(NOSETESTS) -s --with-doctest --doctest-tests --doctest-extension=rst \
-	--doctest-fixtures=_fixture doc/modules/
+	$(NOSETESTS) -s --with-doctest --doctest-tests --doctest-extension=rst 
 
 github:
 	@echo "Send to github"
