@@ -53,10 +53,24 @@ needs to be preprocessed to be used by the scikit.
 Estimators objects
 ===================
 
-* fitting data
+**Fitting data**: The core object of the `scikits.learn` is the
+`estimator` object. All estimator objects expose a `fit` method, that
+takes a dataset (2D array)::
 
-* estimated parameters
+    >>> estimator.fit(data)
 
-* model parameters
+**Estimator parameters**: All the parameters of an estimator can be set
+when it is instanciated, or by modifying the corresponding attribute::
+
+    >>> estimator = Estimator(param1=1, param2=2)
+    >>> estimator.param1
+    1
+
+**Estimated parameters**: When data is fitted with an estimator,
+parameters are estimated from the data at hand. All the estimated
+parameters are attributes of the estimator object ending by an
+underscore::
+
+    >>> estimator.estimated_param_
 
 
