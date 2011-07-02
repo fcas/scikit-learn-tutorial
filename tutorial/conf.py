@@ -72,6 +72,8 @@ pygments_style = 'sphinx'
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
+# Avoid '+DOCTEST...' comments in the docs
+trim_doctest_flags = True
 
 # -- Options for HTML output ---------------------------------------------------
 
@@ -182,4 +184,4 @@ latex_preamble = """
 # If false, no module index is generated.
 #latex_use_modindex = True
 sys.path.append(os.path.abspath('.'))
-extensions = ['sphinxtoghpages']
+extensions = ['sphinxtoghpages', 'sphinx.ext.doctest']
