@@ -60,15 +60,6 @@
           {%- endblock %}
         <div class="clearer"></div>
       </div>
-    </div>
-{% endblock %}
-
-
-{% block relbar1 %}{% endblock %}
-{% block relbar2 %}{% endblock %}
-
-
-{%- block footer %}
     <div class="navbar" style="float: left; margin-left: 15pt;">
     <ul>
     {%- for rellink in rellinks|reverse %}
@@ -79,6 +70,15 @@
     </ul>
     </div>
 
+    </div>
+{% endblock %}
+
+
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
+
+
+{%- block footer %}
     <div class="footer">
         <p style="text-align: center">This tutorial is for scikit-learn
         version {{ release|e }}<p>
