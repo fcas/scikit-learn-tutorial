@@ -36,7 +36,6 @@ class Replacer(object):
         self.to = to
 
     def process(self, text):
-
         return text.replace( self.from_, self.to )
 
 class FileHandler(object):
@@ -49,13 +48,15 @@ class FileHandler(object):
         self.opener = opener
 
     def process(self):
-
-        text = self.opener(self.name).read()
-
+        fl = self.opener(self.name)
+        text = fl.read()
+        text2 = text
         for replacer in self.replacers:
             text = replacer.process( text )
-
-        self.opener(self.name, "w").write(text)
+        fl.close()
+        fl = self.opener(self.name, "w")
+        fl.write(text)
+        fl.close()
 
 class Remover(object):
 
@@ -114,7 +115,9 @@ class DirectoryHandler(object):
     def relative_path(self, directory, filename):
 
         path = directory.replace(self.root, "", 1)
-        return os.path.join(path, filename)
+        # return os.path.join(path, filename) 
+        # Actually, in HTML, we still use / on win32
+        return '/'.join((path, filename))
 
     def new_relative_path(self, directory, filename):
 
@@ -193,7 +196,7 @@ class LayoutFactory(object):
         self.output_stream = stream
         self.force = force
 
-    def create_layout(self, path):
+    def create_layout(self, path, raise_exception=False):
 
         contents = self.dir_helper.list_dir(path)
 
@@ -213,7 +216,7 @@ class LayoutFactory(object):
                     for d in directories
                 ]
 
-        if not underscore_directories:
+        if raise_exception and not underscore_directories:
             raise NoDirectoriesError()
 
         # Build list of files that are in those directories
