@@ -31,7 +31,7 @@ copyright = u'2010–2011, scikits.learn developers (BSD License)'
 # built documents.
 #
 # The short X.Y version. Should track scikit-learn version.
-version = '0.9'
+version = '0.7+'
 # The full version, including alpha/beta/rc tags.
 release = version
 
