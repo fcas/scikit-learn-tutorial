@@ -97,6 +97,72 @@ is the core problem that machine learning addresses.
 Linear model: from regression to sparsity
 ==========================================
 
+.. topic:: Diabetes dataset
+
+    The diabetes dataset consists of 10 physiological variables (age,
+    sex, weight, blood pressure) measure on 442 patients, and an
+    indication of disease progression after one year::
+
+        >>> diabetes = datasets.load_diabetes()
+        >>> X_train = diabetes.data[:-20]
+        >>> X_test  = diabetes.data[-20:]
+        >>> y_train = diabetes.target[:-20]
+        >>> y_test  = diabetes.target[-20:]
+    
+    The task at hand is to predict disease prediction from physiological
+    variables. 
+
+.. image:: plot_ols_1.png
+   :scale: 44
+   :align: right
+
+Linear models: :math:`y = \beta X + \epsilon`
+
+ * :math:`X`: data
+ * :math:`y`: target variable
+ * :math:`\beta`: Coefficients
+ * :math:`\epsilon`: Observation noise
+
+:: 
+
+    >>> from scikits.learn import linear_model
+    >>> clf = linear_model.LinearRegression()
+    >>> clf.fit(X_train, y_train)
+    LinearRegression(fit_intercept=True)
+    >>> print clf.coef_
+    [  3.03499549e-01  -2.37639315e+02   5.10530605e+02   3.27736980e+02
+      -8.14131709e+02   4.92814588e+02   1.02848452e+02   1.84606489e+02
+       7.43519617e+02   7.60951722e+01]
+
+
+.. |diabetes_ols_diag| image:: diabetes_ols_diag.png
+   :scale: 70
+
+.. |diabetes_ols_x1| image:: diabetes_ols_x1.png
+   :scale: 70
+
+.. |diabetes_ols_x2| image:: diabetes_ols_x2.png
+   :scale: 70
+
+
+.. rst-class:: centered
+
+    **Fitting only features 3 and 5**
+
+    |diabetes_ols_diag| |diabetes_ols_x2| |diabetes_ols_x1| 
+
+We can see that although feature 5 has a strong coefficient on the full
+model, it conveys little information on `y` when considered only with
+feature 3.
+
+.. note::
+
+   A representation of the full diabetes dataset would involve 11
+   dimensions (10 feature dimensions, and one of the target variable). It
+   is hard to develop an intuition on such representation, but it may be
+   useful to keep in mind that it would be a fairly *empty* space.
+
+
 Support vector machines
 ========================
 

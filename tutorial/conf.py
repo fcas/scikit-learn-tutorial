@@ -184,4 +184,4 @@ latex_preamble = """
 # If false, no module index is generated.
 #latex_use_modindex = True
 sys.path.append(os.path.abspath('.'))
-extensions = ['sphinxtoghpages', 'sphinx.ext.doctest']
+extensions = ['sphinxtoghpages', 'sphinx.ext.doctest', 'sphinx.ext.pngmath']
