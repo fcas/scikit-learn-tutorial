@@ -37,9 +37,9 @@ Nearest neighbor and the curse of dimensionality
         >>> import numpy as np
         >>> from scikits.learn import datasets
         >>> iris = datasets.load_iris()
-        >>> X = iris.data
-        >>> y = iris.target
-        >>> np.unique(y)
+        >>> iris_X = iris.data
+        >>> iris_y = iris.target
+        >>> np.unique(iris_y)
         array([0, 1, 2])
 
 k-Nearest neigbhors classifier
@@ -63,19 +63,19 @@ the estimator- the observation with the closest feature vector.
     >>> # Split iris data in train and test data
     >>> # A random permutation, to split the data randomly
     >>> np.random.seed(0)
-    >>> indices = np.random.permutation(len(X))
-    >>> X_train = X[indices[:-10]]
-    >>> y_train = y[indices[:-10]]
-    >>> X_test  = X[indices[-10:]]
-    >>> y_test  = y[indices[-10:]]
+    >>> indices = np.random.permutation(len(iris_X))
+    >>> iris_X_train = iris_X[indices[:-10]]
+    >>> iris_y_train = iris_y[indices[:-10]]
+    >>> iris_X_test  = iris_X[indices[-10:]]
+    >>> iris_y_test  = iris_y[indices[-10:]]
     >>> # Create and fit a nearest-neighbor classifier
     >>> from scikits.learn.neighbors import NeighborsClassifier
     >>> knn = NeighborsClassifier()
-    >>> knn.fit(X_train, y_train)
+    >>> knn.fit(iris_X_train, iris_y_train)
     NeighborsClassifier(n_neighbors=5, leaf_size=20, algorithm='auto')
-    >>> knn.predict(X_test)
+    >>> knn.predict(iris_X_test)
     array([1, 2, 1, 0, 0, 0, 2, 1, 2, 0])
-    >>> y_test
+    >>> iris_y_test
     array([1, 1, 1, 0, 0, 0, 2, 1, 2, 0])
 
 The curse of dimensionality
@@ -104,10 +104,10 @@ Linear model: from regression to sparsity
     indication of disease progression after one year::
 
         >>> diabetes = datasets.load_diabetes()
-        >>> X_train = diabetes.data[:-20]
-        >>> X_test  = diabetes.data[-20:]
-        >>> y_train = diabetes.target[:-20]
-        >>> y_test  = diabetes.target[-20:]
+        >>> diabetes_X_train = diabetes.data[:-20]
+        >>> diabetes_X_test  = diabetes.data[-20:]
+        >>> diabetes_y_train = diabetes.target[:-20]
+        >>> diabetes_y_test  = diabetes.target[-20:]
     
     The task at hand is to predict disease prediction from physiological
     variables. 
@@ -130,7 +130,7 @@ Linear models: :math:`y = \beta X + \epsilon`
 
     >>> from scikits.learn import linear_model
     >>> regr = linear_model.LinearRegression()
-    >>> regr.fit(X_train, y_train)
+    >>> regr.fit(diabetes_X_train, diabetes_y_train)
     LinearRegression(fit_intercept=True)
     >>> print regr.coef_
     [  3.03499549e-01  -2.37639315e+02   5.10530605e+02   3.27736980e+02
@@ -138,11 +138,11 @@ Linear models: :math:`y = \beta X + \epsilon`
        7.43519617e+02   7.60951722e+01]
     
     >>> # The mean square error
-    >>> np.mean((regr.predict(X_test) - y_test)**2)
+    >>> np.mean((regr.predict(diabetes_X_test) - diabetes_y_test)**2)
     2004.5676026898223
 
     >>> # Explained variance score: 1 is perfect prediction
-    >>> regr.score(X_test, y_test)
+    >>> regr.score(diabetes_X_test, diabetes_y_test)
     0.58507530226905713
 
 
@@ -204,8 +204,8 @@ We can choose `alpha` to minimize left out error, this time using the
 diabetes dataset, rather than our synthetic data:: 
 
     >>> alphas = np.logspace(-4, -1, 6)
-    >>> print [regr.fit(X_train, y_train, alpha=alpha
-    ...             ).score(X_test, y_test) for alpha in alphas]
+    >>> print [regr.fit(diabetes_X_train, diabetes_y_train, alpha=alpha
+    ...             ).score(diabetes_X_test, diabetes_y_test) for alpha in alphas]
     [0.58511106838835292, 0.58520730154446743, 0.58546775406984897, 0.58555120365039137, 0.58307170855541623, 0.570589994372801]
 
 
@@ -259,17 +259,48 @@ application of Occam's razor: prefer simpler models.
 :: 
 
     >>> regr = linear_model.Lasso(alpha=.1)
-    >>> print [regr.fit(X_train, y_train, alpha=alpha
-    ...             ).score(X_test, y_test) for alpha in alphas]
+    >>> print [regr.fit(diabetes_X_train, diabetes_y_train, alpha=alpha
+    ...             ).score(diabetes_X_test, diabetes_y_test) 
+    ...        for alpha in alphas]
     [0.5851191069162196, 0.58524713649060311, 0.58571895391793782, 0.58730094854527282, 0.5887622418309254, 0.58284500296816755]
     
     >>> best_alpha = alphas[4]
-    >>> regr.fit(X_train, y_train, alpha=best_alpha)
+    >>> regr.fit(diabetes_X_train, diabetes_y_train, alpha=best_alpha)
     Lasso(precompute='auto', alpha=0.025118864315095794, max_iter=1000,
        tol=0.0001, fit_intercept=True)
     >>> print regr.coef_    # doctest: 
     [   0.         -212.43764548  517.19478111  313.77959962 -160.8303982    -0.
      -187.19554705   69.38229038  508.66011217   71.84239008]
+
+Classification
+---------------
+
+
+.. image:: logistic_regression.png
+   :scale: 65
+   :align: right
+
+For classification, as in the labeling iris task, linear regression is
+not the right approach, as it will give too much weight to data far from
+the decision frontier. A linear apprach is to fit a sigmoid function, or
+**logistic** function:
+
+.. math::
+
+   y = \textrm{sigmoid}(\beta X - \textrm{offset}) + \epsilon =
+   \frac{1}{1 + \textrm{exp}(-\beta X + \textrm{offset})} + \epsilon
+
+::
+
+    >>> logistic = linear_model.LogisticRegression(C=1e5)
+    >>> logistic.fit(iris_X_train, iris_y_test)
+
+.. topic:: Shrinkage and sparsity with logistic regression
+
+   The `C` parameter controls the amount of regularization in the
+   `LogisticRegression` object, the bigger `C`, the less regularization.
+   `penalty="l2"` gives shrinkage (i.e. non-sparse coefficients), while 
+   `penalty="l1"` gives sparsity.
 
 
 Support vector machines
