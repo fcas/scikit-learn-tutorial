@@ -231,13 +231,9 @@ Sparsity
 
 .. rst-class:: centered
 
-    **Fitting only features 3 and 5**
+    **Fitting only features 5 and 6**
 
     |diabetes_ols_diag| |diabetes_ols_x2| |diabetes_ols_x1| 
-
-We can see that although feature 5 has a strong coefficient on the full
-model, it conveys little information on `y` when considered only with
-feature 3.
 
 .. note::
 
@@ -246,6 +242,34 @@ feature 3.
    is hard to develop an intuition on such representation, but it may be
    useful to keep in mind that it would be a fairly *empty* space.
 
+
+
+We can see that although feature 2 has a strong coefficient on the full
+model, it conveys little information on `y` when considered with feature
+1.
+
+To improve the conditioning of the problem (mitigate the curse of
+dimensionality), it would be interesting to select only the informative
+features and set non-informative ones, like feature 2 to 0. Ridge regression
+will decrease their contribution, but not set them to zero. Another
+penalization approach, called **Lasso**, can set some coefficients to zero.
+Such methods are called **sparse method**, and sparsity can be seen as an
+application of Occam's razor: prefer simpler models.
+
+:: 
+
+    >>> regr = linear_model.Lasso(alpha=.1)
+    >>> print [regr.fit(X_train, y_train, alpha=alpha
+    ...             ).score(X_test, y_test) for alpha in alphas]
+    [0.5851191069162196, 0.58524713649060311, 0.58571895391793782, 0.58730094854527282, 0.5887622418309254, 0.58284500296816755]
+    
+    >>> best_alpha = alphas[4]
+    >>> regr.fit(X_train, y_train, alpha=best_alpha)
+    Lasso(precompute='auto', alpha=0.025118864315095794, max_iter=1000,
+       tol=0.0001, fit_intercept=True)
+    >>> print regr.coef_    # doctest: 
+    [   0.         -212.43764548  517.19478111  313.77959962 -160.8303982    -0.
+     -187.19554705   69.38229038  508.66011217   71.84239008]
 
 
 Support vector machines

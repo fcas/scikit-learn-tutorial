@@ -5,7 +5,7 @@ from mpl_toolkits.mplot3d import Axes3D
 from scikits.learn import datasets, linear_model
 
 diabetes = datasets.load_diabetes()
-indices = (2, 4)
+indices = (0, 1)
 
 X_train = diabetes.data[:-20, indices]
 X_test  = diabetes.data[-20:, indices]
@@ -27,8 +27,8 @@ ax.plot_surface(np.array([[-.1, -.1], [.15, .15]]),
                                       [-.1, .15, -.1, .15]]).T
                             ).reshape((2, 2)),
                 alpha=.5)
-ax.set_xlabel('X_3')
-ax.set_ylabel('X_5')
+ax.set_xlabel('X_1')
+ax.set_ylabel('X_2')
 ax.set_zlabel('Y')
 ax.set_xticks(())
 ax.set_yticks(())
