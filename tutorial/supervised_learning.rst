@@ -57,8 +57,13 @@ the estimator- the observation with the closest feature vector.
    estimator on **new data**. This is why datasets are often split into
    *train* and *test* data.
 
+**KNN (k nearest neighbors) classification example**:
 
-**KNN (k nearest neighbors) classification example**::
+.. image:: iris_knn.png
+   :scale: 90
+   :align: right
+
+::
 
     >>> # Split iris data in train and test data
     >>> # A random permutation, to split the data randomly
@@ -268,13 +273,12 @@ application of Occam's razor: prefer simpler models.
     >>> regr.fit(diabetes_X_train, diabetes_y_train, alpha=best_alpha)
     Lasso(precompute='auto', alpha=0.025118864315095794, max_iter=1000,
        tol=0.0001, fit_intercept=True)
-    >>> print regr.coef_    # doctest: 
+    >>> print regr.coef_   
     [   0.         -212.43764548  517.19478111  313.77959962 -160.8303982    -0.
      -187.19554705   69.38229038  508.66011217   71.84239008]
 
 Classification
 ---------------
-
 
 .. image:: logistic_regression.png
    :scale: 65
@@ -290,10 +294,20 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
    y = \textrm{sigmoid}(\beta X - \textrm{offset}) + \epsilon =
    \frac{1}{1 + \textrm{exp}(-\beta X + \textrm{offset})} + \epsilon
 
+.. image:: iris_logistic.png
+   :scale: 83
+   :align: right
+
 ::
 
     >>> logistic = linear_model.LogisticRegression(C=1e5)
     >>> logistic.fit(iris_X_train, iris_y_test)
+
+.. topic:: Multiclass classification
+
+   If you have several classes to predict, an option often used is to fit
+   one-versus-all classifiers, and use a voting heuristic for the final
+   decision.
 
 .. topic:: Shrinkage and sparsity with logistic regression
 
@@ -302,9 +316,53 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
    `penalty="l2"` gives shrinkage (i.e. non-sparse coefficients), while 
    `penalty="l1"` gives sparsity.
 
+Support vector machines (SVMs)
+================================
 
-Support vector machines
-========================
+Linear SVMs
+-------------
+
+SVMs are a discrimant model: they try to find a combination of samples to
+build a plane maximizing the margin between the two classes.
+Regularization is set by the `C` parameter: with small `C` give
+(regularized problem) the margin is computed only on the observation
+close to the separating plane; with large `C` all the observations are
+used.
+
+.. |svm_margin| image:: svm_margin.png
+   :scale: 70
+
+.. |svm_margin_no_penalty| image:: svm_margin_no_penalty.png
+   :scale: 70
+
+.. rst-class:: centered
+
+    ============================= ==============================
+     **Unregularized SVM**         **Regularized SVM (default)**
+    ============================= ==============================
+    |svm_margin_no_penalty|       |svm_margin|
+    ============================= ==============================
+
+.. image:: iris_svm.png
+   :scale: 83
+   :align: right
+
+SVMs can be used in regression --SVR (Support Vector Regression)--, or in
+classification --SVC (Support Vector Classification). 
+
+::
+
+    >>> from scikits.learn import svm
+    >>> svc = svm.SVC(kernel='linear')
+    >>> svc.fit(iris_X_train, iris_y_test)
+
+.. raw:: html
+
+   <div style="padding: 2em;">&nbsp;</div>
+
+
+Using kernels
+--------------
 
 Gaussian process: introducing the notion of posterior estimate
 ===============================================================
