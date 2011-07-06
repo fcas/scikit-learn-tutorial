@@ -30,6 +30,9 @@ ax.plot_surface(np.array([[-.1, -.1], [.15, .15]]),
 ax.set_xlabel('X_3')
 ax.set_ylabel('X_5')
 ax.set_zlabel('Y')
+ax.set_xticks(())
+ax.set_yticks(())
+ax.set_zticks(())
 pl.savefig('diabetes_ols_diag.png')
 ax.elev = -.5
 ax.azim = 0
@@ -38,6 +41,4 @@ ax.elev = -.5
 ax.azim = 90
 pl.savefig('diabetes_ols_x2.png')
 
-
-pl.show()
 
