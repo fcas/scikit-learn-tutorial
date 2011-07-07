@@ -387,11 +387,41 @@ creating an decision energy by positioning *kernels* on observations:
 
 .. rst-class:: centered
 
-    ========================== ========================== ==========================
-     **Linear**                **Polynomial**             **Radial Basis Function**
-    ========================== ========================== ==========================
-    |svm_kernel_linear|        |svm_kernel_poly|          |svm_kernel_rbf|
-    ========================== ========================== ==========================
+  .. list-table::
+    
+     * 
+     
+       - **Linear kernel**
+     
+       - **Polynomial kernel**
+       
+       - **RBF kernel (Radial Basis Function)**
+
+     * 
+     
+       - |svm_kernel_linear|
+
+       - |svm_kernel_poly|
+
+       - |svm_kernel_rbf|
+
+     * 
+     
+       - ::
+
+            >>> svc = svm.SVC(kernel='linear')
+
+       - ::
+
+            >>> svc = svm.SVC(kernel='poly', 
+            ...               degree=3)
+            >>> # degree: polynomial degree
+
+       - ::
+
+            >>> svc = svm.SVC(kernel='rbf', )
+            >>> # gamma: inverse of size of 
+            >>> # radial kernel
 
 
 Gaussian process: introducing the notion of posterior estimate
