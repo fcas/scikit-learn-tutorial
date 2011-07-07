@@ -424,6 +424,23 @@ creating an decision energy by positioning *kernels* on observations:
             >>> # radial kernel
 
 
+.. image:: iris_dataset.png
+    :scale: 70
+    :align: right
+
+.. topic:: **Excercise**
+   :class: green
+
+   Try classifying classes 1 and 2 from the digits dataset with SVMs.
+   Leave out 10% of each class and test prediction performance on these
+   observations.
+
+   **Warning**: the classes are ordered, do not leave out the last 10%,
+   you would be testing on only one class.
+
+   **Hint**: You can use the `decision_function` method on a grid to get
+   intuitions.
+
 Gaussian process: introducing the notion of posterior estimate
 ===============================================================
 
