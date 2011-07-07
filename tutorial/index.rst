@@ -32,7 +32,7 @@ Scikit-learn tutorial: statistical-learning for sientific data processing
 
    settings
    supervised_learning
-   unsupervised_learning
    model_selection
+   unsupervised_learning
    finding_help
 

@@ -297,7 +297,9 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
 ::
 
     >>> logistic = linear_model.LogisticRegression(C=1e5)
-    >>> logistic.fit(iris_X_train, iris_y_test)
+    >>> logistic.fit(iris_X_train, iris_y_train)
+    LogisticRegression(C=100000.0, intercept_scaling=1, dual=False,
+              fit_intercept=True, penalty='l2', tol=0.0001)
 
 .. image:: iris_logistic.png
    :scale: 83
@@ -361,7 +363,9 @@ classification --SVC (Support Vector Classification).
 
     >>> from scikits.learn import svm
     >>> svc = svm.SVC(kernel='linear')
-    >>> svc.fit(iris_X_train, iris_y_test)
+    >>> svc.fit(iris_X_train, iris_y_train)
+    SVC(kernel='linear', C=1.0, probability=False, degree=3, coef0=0.0, tol=0.001,
+      shrinking=True, gamma=0.0)
 
 .. raw:: html
 
