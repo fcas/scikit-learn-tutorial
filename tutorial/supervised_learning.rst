@@ -294,14 +294,14 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
    y = \textrm{sigmoid}(\beta X - \textrm{offset}) + \epsilon =
    \frac{1}{1 + \textrm{exp}(-\beta X + \textrm{offset})} + \epsilon
 
-.. image:: iris_logistic.png
-   :scale: 83
-   :align: right
-
 ::
 
     >>> logistic = linear_model.LogisticRegression(C=1e5)
     >>> logistic.fit(iris_X_train, iris_y_test)
+
+.. image:: iris_logistic.png
+   :scale: 83
+   :align: right
 
 .. topic:: Multiclass classification
 
@@ -315,6 +315,13 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
    `LogisticRegression` object, the bigger `C`, the less regularization.
    `penalty="l2"` gives shrinkage (i.e. non-sparse coefficients), while 
    `penalty="l1"` gives sparsity.
+
+.. topic:: **Excercise**
+   :class: green
+
+   Try classifying the digits dataset with nearest neihbors and a linear
+   model. Leave out the last 10% and test prediction performance on these
+   observations.
 
 Support vector machines (SVMs)
 ================================
@@ -363,6 +370,29 @@ classification --SVC (Support Vector Classification).
 
 Using kernels
 --------------
+
+Classes are not always separable in feature space. The solution is to
+build a decision function that is not linear but that may be for instance
+polynomial. This is done using the *kernel trick* that can be seen as
+creating an decision energy by positioning *kernels* on observations:
+
+.. |svm_kernel_linear| image:: svm_kernel_linear.png
+   :scale: 70
+
+.. |svm_kernel_poly| image:: svm_kernel_poly.png
+   :scale: 70
+
+.. |svm_kernel_rbf| image:: svm_kernel_rbf.png
+   :scale: 70
+
+.. rst-class:: centered
+
+    ========================== ========================== ==========================
+     **Linear**                **Polynomial**             **Radial Basis Function**
+    ========================== ========================== ==========================
+    |svm_kernel_linear|        |svm_kernel_poly|          |svm_kernel_rbf|
+    ========================== ========================== ==========================
+
 
 Gaussian process: introducing the notion of posterior estimate
 ===============================================================
