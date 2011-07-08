@@ -33,3 +33,9 @@ pl.axhline(np.max(scores), linestyle='--', color='.5')
 pl.text(2e-4, np.max(scores)+1e-4, '.489')
 pl.savefig('cv_diabetes.png')
 
+################################################################################
+# Bonus: how much can you trust the selection of alpha?
+from scikits.learn import cross_val
+k_fold = cross_val.KFold(len(X), 3)
+print [lasso.fit(X[train], y[train]).alpha for train, _ in k_fold]
+

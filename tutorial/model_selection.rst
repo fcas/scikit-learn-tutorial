@@ -132,7 +132,7 @@ estimator during the construction and exposes an estimator API::
 
     # Prediction performance on test set is not as good as on train set
     >>> clf.score(X_digits[1000:], y_digits[1000:])
-    0.961
+    0.96110414052697613
 
 
 By default the `GridSearchCV` uses a 3-fold cross-validation. However, if
@@ -145,10 +145,44 @@ a stratified 3-fold.
 
         >>> cross_val.cross_val_score(clf, X_digits, y_digits)
 
+    Two cross-validation loops are performed in parallel: one by the
+    GridSearchCV estimator to set `gamma`, the other one by
+    `cross_val_score` to measure the prediction performance of the
+    estimator. The resulting scores are unbiased estimates of the
+    prediction score on new data.
+
 .. warning::
 
     You cannot nest objects with parallel computing (n_jobs different
-    than 1)
+    than 1).
 
 Cross-validated estimators
 ----------------------------
+
+Cross-validation to set a parameter can be done more efficiently on an
+algorithm-by-algorithm basis. This is why, for certain estimators, the
+scikits.learn exposes "CV" estimators, that set their parameter
+automatically by cross-validation::
+
+    >>> from scikits.learn import linear_model, datasets
+    >>> lasso = linear_model.LassoCV()
+    >>> diabetes = datasets.load_diabetes()
+    >>> X_diabetes = diabetes.data
+    >>> y_diabetes = diabetes.target
+    >>> lasso.fit(X_diabetes, y_diabetes)
+    >>> # The estimator chose automatically its lambda:
+    >>> lasso.alpha
+    0.0075421928471338063
+
+These estimators are called similarly to their counterparts, with 'CV'
+appended to their name.
+
+.. topic:: **Excercise**
+   :class: green
+
+   On the diabetes dataset, find the optimal regularization parameter
+   alpha.
+
+   **Bonus**: How much can you trust the selection of alpha?
+
+
