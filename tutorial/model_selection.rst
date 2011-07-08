@@ -58,7 +58,7 @@ of indices for this purpose::
 
 The cross-validation can then be implemented easily:: 
 
-    >>> kfold = cross_val.KFold(len(X_digits), k=10)
+    >>> kfold = cross_val.KFold(len(X_digits), k=3)
     >>> [svc.fit(X_digits[train], y_digits[train]).score(X_digits[test], y_digits[test])
     ...          for train, test in kfold]
     [0.95530726256983245, 1.0, 0.93296089385474856, 0.98324022346368711, 0.98882681564245811, 0.98882681564245811, 0.994413407821229, 0.994413407821229, 0.97206703910614523, 0.95161290322580649]
@@ -97,16 +97,58 @@ of the computer.
 
     - Takes a label array to group observations
 
-.. image:: cv_diabetes.png
-   :scale: 60
+.. image:: cv_digits.png
+   :scale: 65
    :align: right
 
 .. topic:: **Excercise**
    :class: green
 
-   On the diabetes dataset, plot the cross-validation score of a Lasso
-   estimator as a function of alpha (use a logarithmic grid of points,
-   from `1e-4` to `1e-1`).
+   On the digits dataset, plot the cross-validation score of a SVC
+   estimator with an RBF kernel as a function of gamma (use a logarithmic
+   grid of points, from `1e-6` to `1e-1`).
 
 Grid-search and cross-validated estimators
 ============================================
+
+Grid-search
+-------------
+
+The scikits.learn provides an object that, given data, computes the score
+during the fit of an estimator on a parameter grid and chooses the
+parameters to maximize the cross-validation score. This object takes an
+estimator during the construction and exposes an estimator API::
+
+    >>> from scikits.learn.grid_search import GridSearchCV
+    >>> gammas = np.logspace(-6, -1, 10)
+    >>> clf = GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
+    ...                    n_jobs=-1)
+    >>> clf.fit(X_digits[:1000], y_digits[:1000]) # doctest: +ELLIPSIS
+    GridSearchCV(n_jobs=-1, ...)
+    >>> clf.best_score
+    0.98899798001594419
+    >>> clf.best_estimator.gamma
+    0.00059948425031894088
+
+    # Prediction performance on test set is not as good as on train set
+    >>> clf.score(X_digits[1000:], y_digits[1000:])
+    0.961
+
+
+By default the `GridSearchCV` uses a 3-fold cross-validation. However, if
+it detects that a classifier is passed, rather than a regressor, it uses
+a stratified 3-fold.
+
+.. topic:: Nested cross-validation
+
+    ::
+
+        >>> cross_val.cross_val_score(clf, X_digits, y_digits)
+
+.. warning::
+
+    You cannot nest objects with parallel computing (n_jobs different
+    than 1)
+
+Cross-validated estimators
+----------------------------
