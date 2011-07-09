@@ -46,9 +46,9 @@ Nearest neighbor and the curse of dimensionality
 k-Nearest neigbhors classifier
 -------------------------------
 
-The simplest possible classifier is the nearesr neighbor: given a new
-observation `x_test`, find in the training set -the data used to train
-the estimator- the observation with the closest feature vector.
+The simplest possible classifier is the nearest neighbor: given a new
+observation `x_test`, find in the training set (i.e. the data used to train
+the estimator) the observation with the closest feature vector.
 
 .. topic:: Training set and testing set
 
@@ -125,7 +125,7 @@ Linear regression
    :scale: 40
    :align: right
 
-Linear models: :math:`y = \beta X + \epsilon`
+Linear models: :math:`y = X\beta + \epsilon`
 
  * :math:`X`: data
  * :math:`y`: target variable
@@ -302,8 +302,8 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
 
 .. math::
 
-   y = \textrm{sigmoid}(\beta X - \textrm{offset}) + \epsilon =
-   \frac{1}{1 + \textrm{exp}(-\beta X + \textrm{offset})} + \epsilon
+   y = \textrm{sigmoid}(X\beta - \textrm{offset}) + \epsilon =
+   \frac{1}{1 + \textrm{exp}(- X\beta + \textrm{offset})} + \epsilon
 
 ::
 
@@ -436,7 +436,7 @@ creating an decision energy by positioning *kernels* on observations:
 
        - ::
 
-            >>> svc = svm.SVC(kernel='rbf', )
+            >>> svc = svm.SVC(kernel='rbf')
             >>> # gamma: inverse of size of 
             >>> # radial kernel
 

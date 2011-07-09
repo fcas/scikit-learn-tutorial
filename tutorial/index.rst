@@ -6,7 +6,7 @@ Scikit-learn tutorial: statistical-learning for sientific data processing
 
     Machine learning is a technique with a growing importance, as the
     size of the datasets experimental sciences are facing is rapidly
-    growing. Problems it tackle range from building a prediction function
+    growing. Problems it tackles range from building a prediction function
     linking different observations, to classifying observations, or
     learning the structure in an unlabeled dataset. 
     
