@@ -98,7 +98,7 @@ of the computer.
     - Takes a label array to group observations
 
 .. image:: cv_digits.png
-   :scale: 65
+   :scale: 44
    :align: right
 
 .. topic:: **Excercise**
@@ -130,7 +130,7 @@ estimator during the construction and exposes an estimator API::
     >>> clf.best_estimator.gamma
     0.00059948425031894088
 
-    # Prediction performance on test set is not as good as on train set
+    >>> # Prediction performance on test set is not as good as on train set
     >>> clf.score(X_digits[1000:], y_digits[1000:])
     0.96110414052697613
 

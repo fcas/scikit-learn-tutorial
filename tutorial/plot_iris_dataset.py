@@ -14,6 +14,7 @@ x_min, x_max = X[:,0].min() - .5, X[:,0].max() + .5
 y_min, y_max = X[:,1].min() - .5, X[:,1].max() + .5
 
 pl.figure(1, figsize=(4, 3))
+pl.clf()
 pl.set_cmap(pl.cm.Paired)
 
 # Plot also the training points

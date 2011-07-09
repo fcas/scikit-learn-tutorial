@@ -2,6 +2,7 @@
 Supervised learning: predicting an output variable from high-dimensional observations
 =======================================================================================
 
+
 .. topic:: The problem solved in supervised learning
 
    Supervised learning consists in learning the link between two
@@ -121,7 +122,7 @@ Linear regression
 ------------------
 
 .. image:: plot_ols_1.png
-   :scale: 50
+   :scale: 40
    :align: right
 
 Linear models: :math:`y = \beta X + \epsilon`
@@ -225,13 +226,13 @@ Sparsity
 
 
 .. |diabetes_ols_diag| image:: diabetes_ols_diag.png
-   :scale: 70
+   :scale: 65
 
 .. |diabetes_ols_x1| image:: diabetes_ols_x1.png
-   :scale: 70
+   :scale: 65
 
 .. |diabetes_ols_x2| image:: diabetes_ols_x2.png
-   :scale: 70
+   :scale: 65
 
 
 .. rst-class:: centered
@@ -276,6 +277,16 @@ application of Occam's razor: prefer simpler models.
     >>> print regr.coef_   
     [   0.         -212.43764548  517.19478111  313.77959962 -160.8303982    -0.
      -187.19554705   69.38229038  508.66011217   71.84239008]
+
+.. topic:: **Different algorithms for a same problem**
+
+    Different algorithms can be used to solve the same mathematical
+    problem. For instance the `Lasso` object in the `scikits.learn`
+    solves the lasso regression using a *coordinate descent* method, that
+    is efficient on large datasets. However, the `scikits.learn` also
+    provides the `LassoLARS` object, using the *LARS* which is very
+    efficient for problems in which the weight vector estimated is very
+    sparse, that is problems with very few observations.
 
 Classification
 ---------------
@@ -367,10 +378,12 @@ classification --SVC (Support Vector Classification).
     SVC(kernel='linear', C=1.0, probability=False, degree=3, coef0=0.0, tol=0.001,
       shrinking=True, gamma=0.0)
 
-.. raw:: html
 
-   <div style="padding: 2em;">&nbsp;</div>
+.. warning:: **Normalizing data**
 
+   For many estimators, including the SVMs, having datasets with unit
+   standard deviation for each feature is important to get good
+   prediction.
 
 Using kernels
 --------------
@@ -381,13 +394,13 @@ polynomial. This is done using the *kernel trick* that can be seen as
 creating an decision energy by positioning *kernels* on observations:
 
 .. |svm_kernel_linear| image:: svm_kernel_linear.png
-   :scale: 70
+   :scale: 65
 
 .. |svm_kernel_poly| image:: svm_kernel_poly.png
-   :scale: 70
+   :scale: 65
 
 .. |svm_kernel_rbf| image:: svm_kernel_rbf.png
-   :scale: 70
+   :scale: 65
 
 .. rst-class:: centered
 
@@ -447,4 +460,5 @@ creating an decision energy by positioning *kernels* on observations:
 
 Gaussian process: introducing the notion of posterior estimate
 ===============================================================
+
 
