@@ -141,11 +141,74 @@ For estimating a large number of clusters, top-down approaches are both
 statisticaly ill-posed, and slow. Hierarchical clustering is a bottom-up
 approach that merges successively observations together and is
 particularly useful when the clusters of interest are made of only a few
-observations. *Ward* clustering minimize a criterion similar to k-means
+observations. *Ward* clustering minimizes a criterion similar to k-means
 in a bottom-up approach. When the number of clusters is large, it is much
-more computationally efficient then k-means.
+more computationally efficient than k-means.
+
+Connectivity-constrained clustering
+.....................................
+
+With Ward clustering, it is possible to specify which samples can be
+clustered together by giving a connectivity graph. Graphs in the scikit
+are represented by their adjacency matrix. Often a sparse matrix is used.
+This can be useful for instance to retrieve connect regions when
+clustering an image:
+
+.. image:: lena_ward.png
+    :scale: 70
+    :align: right
+
+::
+
+    >>> # Downsample the image by a factor of 4
+    >>> lena = lena[::2, ::2] + lena[1::2, ::2] + lena[::2, 1::2] + lena[1::2, 1::2]
+    >>> X = np.reshape(lena, (-1, 1))
+
+    >>> # the structure of the data: pixels connected to their neighbors
+    >>> from scikits.learn.feature_extraction.image import grid_to_graph
+    >>> connectivity = grid_to_graph(*lena.shape)
+
+    >>> ward = cluster.Ward(n_clusters=30)
+    >>> ward.fit(X, connectivity=connectivity)
+    >>> labels = np.reshape(ward.labels_, lena.shape)
+
+..  To generate the image
+    >>> pl.imsave('lena_ward.png', labels)
 
 
+Feature agglomeration
+......................
+
+We have seen that sparsity could be used to mitigate the curse of
+dimensionality, *i.e* the insufficience of observations compared to the
+number of features. Another approach is to merge together similar
+features: **feature agglomeration**. This approach can be implementing by
+clustering in the feature direction, in other words clustering the
+transposed data.
+
+.. image:: digits_agglo.png
+    :align: right
+    :scale: 57
+
+::
+
+   >>> digits = datasets.load_digits()
+   >>> images = digits.images
+   >>> X = np.reshape(images, (len(images), -1))
+   >>> connectivity = grid_to_graph(*images[0].shape)
+
+   >>> agglo = cluster.WardAgglomeration(connectivity=connectivity,
+   ...                                   n_clusters=32)
+   >>> agglo.fit(X)
+   >>> X_reduced = agglo.transform(X)
+
+   >>> X_approx = agglo.inverse_transform(X_reduced)
+   >>> images_approx = np.reshape(X_restored, images.shape)
+
+.. topic:: `transform` and `inverse_transform` methods
+
+   Some estimators expose a `transform` method, for instance to reduce
+   the dimensionality of the dataset.
 
 Decompositions: from a signal to components and loadings
 ===========================================================
