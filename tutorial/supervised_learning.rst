@@ -440,6 +440,9 @@ creating an decision energy by positioning *kernels* on observations:
             >>> # gamma: inverse of size of 
             >>> # radial kernel
 
+.. topic:: **Interactive example**
+
+   :download: svm_gui.py
 
 .. image:: iris_dataset.png
     :scale: 70
