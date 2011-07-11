@@ -213,3 +213,35 @@ transposed data.
 Decompositions: from a signal to components and loadings
 ===========================================================
 
+.. topic:: **Components and loadings**
+
+   If X is our multivariate data, the problem that we are trying to solve
+   is to rewrite it on a different observation basis: we want to learn
+   loadings L and a set of components C such that *X = L C*.
+   Different criteria exist to choose the components
+
+Principal component analysis: PCA
+-----------------------------------
+
+Principal component analysis select the successive components that
+explain the maximum variance in the signal.
+
+.. |pca_3d_axis| image:: pca_3d_axis.jpg
+   :scale: 70
+
+.. |pca_3d_aligned| image:: pca_3d_aligned.jpg
+   :scale: 70
+
+.. rst-class:: centered
+
+   |pca_3d_axis| |pca_3d_aligned|
+
+The point cloud spanned by the observations above is very flat in one
+direction: one of the 3 univariate features can almost be exactly
+computed using the 2 other. PCA finds the directions in which the data is
+not *flat*
+
+When used to *transform* data, PCA can reduce the dimensionality of the
+data by projecting on a principal subspace.
+
+.. Eigenfaces here?

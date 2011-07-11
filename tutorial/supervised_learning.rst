@@ -458,7 +458,8 @@ creating an decision energy by positioning *kernels* on observations:
    **Hint**: You can use the `decision_function` method on a grid to get
    intuitions.
 
-Gaussian process: introducing the notion of posterior estimate
-===============================================================
+..  
+ Gaussian process: introducing the notion of posterior estimate
+ ===============================================================
 
 
