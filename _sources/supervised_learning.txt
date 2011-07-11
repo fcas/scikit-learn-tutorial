@@ -440,6 +440,10 @@ creating an decision energy by positioning *kernels* on observations:
             >>> # gamma: inverse of size of 
             >>> # radial kernel
 
+.. topic:: **Interactive example**
+
+   Download: :download:`svm_gui.py`, add data points of both classes with
+   right and left button, fit the model and change parameters and data.
 
 .. image:: iris_dataset.png
     :scale: 70
