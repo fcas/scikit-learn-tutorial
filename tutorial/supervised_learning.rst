@@ -442,7 +442,8 @@ creating an decision energy by positioning *kernels* on observations:
 
 .. topic:: **Interactive example**
 
-   :download: svm_gui.py
+   Download: :download:`svm_gui.py`, add data points of both classes with
+   right and left button, fit the model and change parameters and data.
 
 .. image:: iris_dataset.png
     :scale: 70
