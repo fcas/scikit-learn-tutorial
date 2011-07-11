@@ -104,5 +104,5 @@ github:
 	git checkout gh-pages
 	touch ../.nojekyll && git add ../.nojekyll
 	git commit -a -m "Add nojekyll" && git push
-	git checkout master
+	git checkout statistical-learning
 
