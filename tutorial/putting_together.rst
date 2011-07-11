@@ -50,7 +50,7 @@ Parameters of pipelines can be set using '__' separated parameter names::
 
 
 Face recognition with eigenfaces
----------------------------------
+=================================
 
 The dataset used in this example is a preprocessed excerpt of the
 "Labeled Faces in the Wild", aka LFW_:
@@ -96,7 +96,7 @@ Expected results for the top 5 most represented people in the dataset::
 
 
 Open problem: stock market structure
--------------------------------------
+=====================================
 
 Can we predict the variation in stock prices for Google?
 
