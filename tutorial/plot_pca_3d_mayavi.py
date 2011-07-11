@@ -12,8 +12,8 @@ except ImportError:
     from mayavi import mlab
 
 
-y = np.random.normal(scale=0.5, size=(30000))
-x = np.random.normal(scale=0.5, size=(30000))
+y = np.random.normal(scale=0.5, size=(200000))
+x = np.random.normal(scale=0.5, size=(200000))
 z = np.random.normal(scale=0.1, size=(len(x)), )
 def pdf(x):
     return 0.5*(  stats.norm(scale=0.25/e).pdf(x) 
@@ -42,7 +42,7 @@ U, pca_score, V = np.linalg.svd(Y, full_matrices=False)
 x_pca_axis, y_pca_axis, z_pca_axis = V.T*pca_score/pca_score.min()
 
 mlab.view(-20.8, 83, 9, [0.18, 0.2, -0.24])
-mlab.savefig('pca_3d.jpg')
+#mlab.savefig('pca_3d.jpg')
 mlab.quiver3d(0.1*x_pca_axis, 0.1*y_pca_axis, 0.1*z_pca_axis,
                 2*x_pca_axis, 2*y_pca_axis, 2*z_pca_axis,
                 color=(0.6, 0, 0), line_width=2)
@@ -63,9 +63,9 @@ mlab.mesh(x_pca_plane, y_pca_plane, z_pca_plane, color=(0.6, 0, 0),
 
 #mlab.title('PCA axis')
 mlab.view(-20.8, 83, 9, [0.18, 0.2, -0.24])
-mlab.savefig('pca_3d_axis.jpg')
+#mlab.savefig('pca_3d_axis.jpg')
 
 # A view
 mlab.view(3.3, 43.8, 9.2, [0.04, -0.11, -0.17])
-mlab.savefig('pca_3d_aligned.jpg')
+#mlab.savefig('pca_3d_aligned.jpg')
 

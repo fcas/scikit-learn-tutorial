@@ -244,4 +244,59 @@ not *flat*
 When used to *transform* data, PCA can reduce the dimensionality of the
 data by projecting on a principal subspace.
 
+.. np.random.seed(0)
+
+::
+
+    >>> # Create a signal with only 2 useful dimensions
+    >>> x1 = np.random.normal(size=100)
+    >>> x2 = np.random.normal(size=100)
+    >>> x3 = x1 + x2
+    >>> X = np.c_[x1, x2, x3]
+
+    >>> from scikits.learn import decomposition
+    >>> pca = decomposition.PCA()
+    >>> pca.fit(X)
+    >>> print pca.explained_variance_
+    [  2.77227227e+00,   1.14228495e+00,   2.66364138e-32]
+
+    >>> Only the 2 first components are useful
+    >>> X_reduced = pca.fit_transform(X, n_components=2)
+    >>> X_reduced.shape
+    (100, 2)
+
 .. Eigenfaces here?
+
+Indenpendant Component Analysis: ICA
+-------------------------------------
+
+ICA selects components so that the distribution of their loadings carries
+a maximum amount of independant information. It is able to recover
+**non-Gaussian** independant signals:
+
+.. image:: plot_ica_blind_source_separation_1.png
+   :scale: 70
+   :align: center
+
+.. np.random.seed(0)
+
+::
+
+    >>> # Generate sample data
+    >>> time = np.linspace(0, 10, 2000)
+    >>> s1 = np.sin(2 * time)  # Signal 1 : sinusoidal signal
+    >>> s2 = np.sign(np.sin(3 * time))  # Signal 2 : square signal
+    >>> S = np.c_[s1, s2]
+    >>> S += 0.2 * np.random.normal(size=S.shape)  # Add noise
+    >>> S /= S.std(axis=0)  # Standardize data
+    >>> # Mix data
+    >>> A = np.array([[1, 1], [0.5, 2]])  # Mixing matrix
+    >>> X = np.dot(S, A.T)  # Generate observations
+
+    >>> # Compute ICA
+    >>> ica = decomposition.FastICA()
+    >>> S_ = ica.fit(X).transform(X)  # Get the estimated sources
+    >>> A_ = ica.get_mixing_matrix()  # Get estimated mixing matrix
+    >>> assert np.allclose(X, np.dot(S_, A_.T))
+    True
+
