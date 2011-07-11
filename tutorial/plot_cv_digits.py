@@ -1,6 +1,4 @@
 import numpy as np
-import pylab as pl
-
 from scikits.learn import cross_val, datasets, svm
 
 digits = datasets.load_digits()
@@ -8,17 +6,17 @@ X = digits.data
 y = digits.target
 
 svc = svm.SVC()
+gammas = np.logspace(-6, -1, 10)
 
 scores = list()
 scores_std = list()
-gammas = np.logspace(-6, -1, 10)
-
 for gamma in gammas:
     svc.gamma = gamma
     this_scores = cross_val.cross_val_score(svc, X, y, n_jobs=-1)
     scores.append(np.mean(this_scores))
     scores_std.append(np.std(this_scores))
 
+import pylab as pl
 pl.figure(1, figsize=(2.5, 2))
 pl.clf()
 pl.axes([.1, .25, .8, .7])

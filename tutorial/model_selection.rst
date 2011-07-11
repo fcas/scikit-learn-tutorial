@@ -98,15 +98,19 @@ of the computer.
     - Takes a label array to group observations
 
 .. image:: cv_digits.png
-   :scale: 44
+   :scale: 54
    :align: right
 
-.. topic:: **Excercise**
+.. topic:: **Exercise**
    :class: green
 
    On the digits dataset, plot the cross-validation score of a SVC
    estimator with an RBF kernel as a function of gamma (use a logarithmic
    grid of points, from `1e-6` to `1e-1`).
+
+   .. toctree::
+
+      digits_cv_excercice.rst
 
 Grid-search and cross-validated estimators
 ============================================

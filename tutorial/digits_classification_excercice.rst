@@ -1,8 +1,8 @@
 
-Excercice: KNN on digits
-=========================
+Excercice: classification of digits
+====================================
 
-.. literalinclude:: plot_knn_digits.py
+.. literalinclude:: plot_digits_classification_excercice.py
     :lines: 1-5   
 
 
