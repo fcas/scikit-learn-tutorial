@@ -99,7 +99,6 @@ of the computer.
 
 .. image:: cv_digits.png
    :scale: 54
-   :align: right
 
 .. topic:: **Exercise**
    :class: green
