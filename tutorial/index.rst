@@ -2,6 +2,9 @@
 Scikit-learn tutorial: statistical-learning for sientific data processing
 ==========================================================================
 
+
+**http://gaelvaroquaux.github.com/scikit-learn-tutorial/**
+
 .. topic:: Statistical learning 
 
     Machine learning is a technique with a growing importance, as the
@@ -34,5 +37,6 @@ Scikit-learn tutorial: statistical-learning for sientific data processing
    supervised_learning
    model_selection
    unsupervised_learning
+   putting_together
    finding_help
 
