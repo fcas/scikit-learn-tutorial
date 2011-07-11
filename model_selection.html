@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. Model selection: choosing estimators and their parameters &mdash; scikit-learn tutorial v0.7+ documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7+',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="top" title="scikit-learn tutorial v0.7+ documentation" href="index.html" />
+    <link rel="next" title="4. Unsupervised learning: seeking representations of the data" href="unsupervised_learning.html" />
+    <link rel="prev" title="2. Supervised learning: predicting an output variable from high-dimensional observations" href="supervised_learning.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="index.html">
+            <img src="_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+          <li><a href="supervised_learning.html" title="2. Supervised learning: predicting an output variable from high-dimensional observations"
+             accesskey="P">previous</a></li> |
+          <li><a href="unsupervised_learning.html" title="4. Unsupervised learning: seeking representations of the data"
+             accesskey="N">next</a></li>
+       </ul>
+
+	&nbsp;
+	<ul>
+	<li><a href="index.html">Index</a>
+	</li>
+	</ul>
+
+       </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="model-selection-choosing-estimators-and-their-parameters">
+<h1>3. Model selection: choosing estimators and their parameters<a class="headerlink" href="#model-selection-choosing-estimators-and-their-parameters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="score-and-cross-validated-scores">
+<h2>3.1. Score, and cross-validated scores<a class="headerlink" href="#score-and-cross-validated-scores" title="Permalink to this headline">¶</a></h2>
+<p>As we have seen, every estimator exposes a <cite>score</cite> method that can judge
+the quality of the fit (or the prediction) on new data. <strong>Bigger is
+better</strong>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">svm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_digits</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">target</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">])</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:],</span> <span class="n">y_digits</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:])</span>
+<span class="go">0.97999999999999998</span>
+</pre></div>
+</div>
+<p>To get a better measure of prediction accuracy (which we can use as a
+proxy for goodness of fit of the model), we can successively split the
+data in <em>folds</em> that we use for training and testing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_folds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">X_digits</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_folds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">y_digits</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scores</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c"># We use &#39;list&#39; to copy, in order to &#39;pop&#39; later on</span>
+<span class="gp">... </span>    <span class="n">X_train</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_folds</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">X_test</span>  <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">y_train</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">y_folds</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">y_test</span>  <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">scores</span>
+<span class="go">[0.9555555555555556, 1.0, 0.93333333333333335, 0.99444444444444446, 0.98333333333333328, 0.98888888888888893, 0.99444444444444446, 0.994413407821229, 0.97206703910614523, 0.96089385474860334]</span>
+</pre></div>
+</div>
+<p>This is called a <strong>K-Fold cross-validation</strong>.</p>
+</div>
+<div class="section" id="cross-validation-generators">
+<h2>3.2. Cross-validation generators<a class="headerlink" href="#cross-validation-generators" title="Permalink to this headline">¶</a></h2>
+<p>The code above to split data in train and test sets is tedious to write.
+The <cite>scikits.learn</cite> exposes cross-validation generators to generate list
+of indices for this purpose:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn</span> <span class="kn">import</span> <span class="n">cross_val</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k_fold</span> <span class="o">=</span> <span class="n">cross_val</span><span class="o">.</span><span class="n">KFold</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">train_mask</span><span class="p">,</span> <span class="n">test_mask</span> <span class="ow">in</span> <span class="n">k_fold</span><span class="p">:</span>
+<span class="gp">... </span>     <span class="k">print</span> <span class="s">&#39;Train: </span><span class="si">%s</span><span class="s"> | test: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">train_mask</span><span class="p">,</span> <span class="n">test_mask</span><span class="p">)</span>
+<span class="go">Train: [False False  True  True  True  True] | test: [ True  True False False False False]</span>
+<span class="go">Train: [ True  True False False  True  True] | test: [False False  True  True False False]</span>
+<span class="go">Train: [ True  True  True  True False False] | test: [False False False False  True  True]</span>
+</pre></div>
+</div>
+<p>The cross-validation can then be implemented easily:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">kfold</span> <span class="o">=</span> <span class="n">cross_val</span><span class="o">.</span><span class="n">KFold</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_digits</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="n">train</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">train</span><span class="p">])</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="n">test</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[</span><span class="n">test</span><span class="p">])</span>
+<span class="gp">... </span>         <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">kfold</span><span class="p">]</span>
+<span class="go">[0.95530726256983245, 1.0, 0.93296089385474856, 0.98324022346368711, 0.98882681564245811, 0.98882681564245811, 0.994413407821229, 0.994413407821229, 0.97206703910614523, 0.95161290322580649]</span>
+</pre></div>
+</div>
+<p>To compute the <cite>score</cite> method of an estimator, the scikits.learn exposes
+a helper function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">svc</span><span class="p">,</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([ 0.95530726,  1.        ,  0.93296089,  0.98324022,  0.98882682,</span>
+<span class="go">        0.98882682,  0.99441341,  0.99441341,  0.97206704,  0.9516129 ])</span>
+</pre></div>
+</div>
+<p><cite>n_jobs=-1</cite> means that the computation will be dispatched on all the CPUs
+of the computer.</p>
+<blockquote>
+<strong>Cross-validation generators</strong></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr><td><cite>KFold(n, k)</cite></td>
+<td><cite>StratifiedKFold(y, k)</cite></td>
+<td><cite>LeaveOneOut(n)</cite></td>
+<td><cite>LeaveOneLabelOut(labels)</cite></td>
+</tr>
+<tr><td>Split it K folds, train on K-1, test on left-out</td>
+<td>Make sure that all classes are even accross the folds</td>
+<td>Leave one observation out</td>
+<td>Takes a label array to group observations</td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="_images/cv_digits.png"><img align="right" alt="_images/cv_digits.png" class="align-right" src="_images/cv_digits.png" style="width: 176.0px; height: 132.0px;" /></a>
+<div class="green topic">
+<p class="topic-title first"><strong>Excercise</strong></p>
+<p>On the digits dataset, plot the cross-validation score of a SVC
+estimator with an RBF kernel as a function of gamma (use a logarithmic
+grid of points, from <cite>1e-6</cite> to <cite>1e-1</cite>).</p>
+</div>
+</div>
+<div class="section" id="grid-search-and-cross-validated-estimators">
+<h2>3.3. Grid-search and cross-validated estimators<a class="headerlink" href="#grid-search-and-cross-validated-estimators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grid-search">
+<h3>3.3.1. Grid-search<a class="headerlink" href="#grid-search" title="Permalink to this headline">¶</a></h3>
+<p>The scikits.learn provides an object that, given data, computes the score
+during the fit of an estimator on a parameter grid and chooses the
+parameters to maximize the cross-validation score. This object takes an
+estimator during the construction and exposes an estimator API:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gammas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">svc</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="n">gammas</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[:</span><span class="mi">1000</span><span class="p">],</span> <span class="n">y_digits</span><span class="p">[:</span><span class="mi">1000</span><span class="p">])</span> 
+<span class="go">GridSearchCV(n_jobs=-1, ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">best_score</span>
+<span class="go">0.98899798001594419</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">best_estimator</span><span class="o">.</span><span class="n">gamma</span>
+<span class="go">0.00059948425031894088</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Prediction performance on test set is not as good as on train set</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_digits</span><span class="p">[</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">y_digits</span><span class="p">[</span><span class="mi">1000</span><span class="p">:])</span>
+<span class="go">0.96110414052697613</span>
+</pre></div>
+</div>
+<p>By default the <cite>GridSearchCV</cite> uses a 3-fold cross-validation. However, if
+it detects that a classifier is passed, rather than a regressor, it uses
+a stratified 3-fold.</p>
+<div class="topic">
+<p class="topic-title first">Nested cross-validation</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">cross_val</span><span class="o">.</span><span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_digits</span><span class="p">,</span> <span class="n">y_digits</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Two cross-validation loops are performed in parallel: one by the
+GridSearchCV estimator to set <cite>gamma</cite>, the other one by
+<cite>cross_val_score</cite> to measure the prediction performance of the
+estimator. The resulting scores are unbiased estimates of the
+prediction score on new data.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">You cannot nest objects with parallel computing (n_jobs different
+than 1).</p>
+</div>
+</div>
+<div class="section" id="cross-validated-estimators">
+<h3>3.3.2. Cross-validated estimators<a class="headerlink" href="#cross-validated-estimators" title="Permalink to this headline">¶</a></h3>
+<p>Cross-validation to set a parameter can be done more efficiently on an
+algorithm-by-algorithm basis. This is why, for certain estimators, the
+scikits.learn exposes &#8220;CV&#8221; estimators, that set their parameter
+automatically by cross-validation:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn</span> <span class="kn">import</span> <span class="n">linear_model</span><span class="p">,</span> <span class="n">datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lasso</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">LassoCV</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">diabetes</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X_diabetes</span> <span class="o">=</span> <span class="n">diabetes</span><span class="o">.</span><span class="n">data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y_diabetes</span> <span class="o">=</span> <span class="n">diabetes</span><span class="o">.</span><span class="n">target</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_diabetes</span><span class="p">,</span> <span class="n">y_diabetes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># The estimator chose automatically its lambda:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lasso</span><span class="o">.</span><span class="n">alpha</span>
+<span class="go">0.0075421928471338063</span>
+</pre></div>
+</div>
+<p>These estimators are called similarly to their counterparts, with &#8216;CV&#8217;
+appended to their name.</p>
+<div class="green topic">
+<p class="topic-title first"><strong>Excercise</strong></p>
+<p>On the diabetes dataset, find the optimal regularization parameter
+alpha.</p>
+<p><strong>Bonus</strong>: How much can you trust the selection of alpha?</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    <div class="navbar" style="float: left; margin-left: 15pt;">
+    <ul>
+    <li><a href="supervised_learning.html" title="2. Supervised learning: predicting an output variable from high-dimensional observations"
+	>previous</a></li> |
+    <li><a href="unsupervised_learning.html" title="4. Unsupervised learning: seeking representations of the data"
+	>next</a></li>
+    </ul>
+    </div>
+
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This tutorial is for scikit-learn
+        version 0.7+<p>
+        &copy; 2010–2011, scikits.learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

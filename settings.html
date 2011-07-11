@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Statistical learning: the setting and the estimator object in the scikit-learn &mdash; scikit-learn tutorial v0.7+ documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.7+',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="top" title="scikit-learn tutorial v0.7+ documentation" href="index.html" />
+    <link rel="next" title="2. Supervised learning: predicting an output variable from high-dimensional observations" href="supervised_learning.html" />
+    <link rel="prev" title="Scikit-learn tutorial: statistical-learning for sientific data processing" href="index.html" /> 
+  </head>
+  <body>
+    <div class="header-wrapper">
+      <div class="header">
+          <p class="logo"><a href="index.html">
+            <img src="_static/scikit-learn-logo-small.png" alt="Logo"/>
+          </a>
+          </p><div class="navbar">
+          <ul>
+          <li><a href="index.html" title="Scikit-learn tutorial: statistical-learning for sientific data processing"
+             accesskey="P">previous</a></li> |
+          <li><a href="supervised_learning.html" title="2. Supervised learning: predicting an output variable from high-dimensional observations"
+             accesskey="N">next</a></li>
+       </ul>
+
+	&nbsp;
+	<ul>
+	<li><a href="index.html">Index</a>
+	</li>
+	</ul>
+
+       </div> <!-- end navbar --></div>
+    </div>
+
+    <div class="content-wrapper">
+
+    <!-- <div id="blue_tile"></div> -->
+
+      <div class="content">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="statistical-learning-the-setting-and-the-estimator-object-in-the-scikit-learn">
+<h1>1. Statistical learning: the setting and the estimator object in the scikit-learn<a class="headerlink" href="#statistical-learning-the-setting-and-the-estimator-object-in-the-scikit-learn" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="datasets">
+<h2>1.1. Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>scikits.learn</cite> deals with learning information from one or more
+datasets that are represented as 2D arrays. They can be understood as a
+list of multi-dimensional observations. We say that the first axis of
+these arrays is the <strong>samples</strong> axis, while the second is the
+<strong>features</strong> axis.</p>
+<div class="topic">
+<p class="topic-title first">A simple example shipped with the scikit: iris dataset</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(150, 4)</span>
+</pre></div>
+</div>
+<p>It is made of 150 observations of irises, each described by 4
+features: their sepal and petal length and width, as detailed in
+<cite>iris.DESCR</cite>.</p>
+</div>
+<p>When the data is not intially in the <cite>(n_samples, n_features)</cite> shape, it
+needs to be preprocessed to be used by the scikit.</p>
+<div class="topic">
+<p class="topic-title first">An example of reshaping data: the digits dataset</p>
+<a class="reference internal image-reference" href="_images/digits_first_image.png"><img align="right" alt="_images/digits_first_image.png" class="align-right" src="_images/digits_first_image.png" style="width: 166.0px; height: 150.0px;" /></a>
+<p>The digits dataset is made of 1797 8x8 images of hand-written
+digits</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(1797, 8, 8)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">pl</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">gray_r</span><span class="p">)</span> 
+<span class="go">&lt;matplotlib.image.AxesImage object at ...&gt;</span>
+</pre></div>
+</div>
+<p>To use this dataset with the scikit, we transform each 8x8 image in a
+feature vector of length 64</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="estimators-objects">
+<h2>1.2. Estimators objects<a class="headerlink" href="#estimators-objects" title="Permalink to this headline">¶</a></h2>
+<p><strong>Fitting data</strong>: The core object of the <cite>scikits.learn</cite> is the
+<cite>estimator</cite> object. All estimator objects expose a <cite>fit</cite> method, that
+takes a dataset (2D array):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Estimator parameters</strong>: All the parameters of an estimator can be set
+when it is instanciated, or by modifying the corresponding attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Estimator</span><span class="p">(</span><span class="n">param1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">param2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">param1</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<p><strong>Estimated parameters</strong>: When data is fitted with an estimator,
+parameters are estimated from the data at hand. All the estimated
+parameters are attributes of the estimator object ending by an
+underscore:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">estimator</span><span class="o">.</span><span class="n">estimated_param_</span> 
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        <div class="clearer"></div>
+      </div>
+    <div class="navbar" style="float: left; margin-left: 15pt;">
+    <ul>
+    <li><a href="index.html" title="Scikit-learn tutorial: statistical-learning for sientific data processing"
+	>previous</a></li> |
+    <li><a href="supervised_learning.html" title="2. Supervised learning: predicting an output variable from high-dimensional observations"
+	>next</a></li>
+    </ul>
+    </div>
+
+    </div>
+
+    <div class="footer">
+        <p style="text-align: center">This tutorial is for scikit-learn
+        version 0.7+<p>
+        &copy; 2010–2011, scikits.learn developers (BSD License).
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+    </div>
+  </body>
+</html>

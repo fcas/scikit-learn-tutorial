@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2. Machine Learning 101 &mdash; scikit-learn tutorial v0.9 documentation</title>
+    <title>2. Machine Learning 101 &mdash; scikit-learn tutorial v0.7+ documentation</title>
     <link rel="stylesheet" href="static/nature.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.9',
+        VERSION:     '0.7+',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
     <link rel="shortcut icon" href="static/favicon.ico"/>
-    <link rel="top" title="scikit-learn tutorial v0.9 documentation" href="index.html" />
+    <link rel="top" title="scikit-learn tutorial v0.7+ documentation" href="index.html" />
     <link rel="next" title="3. Working with text data" href="working_with_text_data.html" />
     <link rel="prev" title="1. Tutorial setup" href="setup.html" /> 
   </head>
@@ -35,10 +35,17 @@
           </a>
           </p><div class="navbar">
           <ul>
-            <li><a href="http://github.com/scikit-learn/scikit-learn-tutorial">Source of this tutorial</a></li>
-            <li><a href="http://scikit-learn.sourceforge.net">Documentation for scikit-learn</a></li>
+          <li><a href="setup.html" title="1. Tutorial setup"
+             accesskey="P">previous</a></li> |
+          <li><a href="working_with_text_data.html" title="3. Working with text data"
+             accesskey="N">next</a></li>
        </ul>
 
+	&nbsp;
+	<ul>
+	<li><a href="index.html">Index</a>
+	</li>
+	</ul>
 
        </div> <!-- end navbar --></div>
     </div>
@@ -46,64 +53,6 @@
     <div class="content-wrapper">
 
     <!-- <div id="blue_tile"></div> -->
-
-        <div class="sphinxsidebar">
-        <div class="rel">
-          <a href="setup.html" title="1. Tutorial setup"
-             accesskey="P">previous</a> |
-          <a href="working_with_text_data.html" title="3. Working with text data"
-             accesskey="N">next</a> |
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a>
-        </div>
-        
-
-        <h3>Contents</h3>
-         <ul>
-<li><a class="reference internal" href="#">2. Machine Learning 101</a><ul>
-<li><a class="reference internal" href="#features-and-feature-extraction">2.1. Features and feature extraction</a><ul>
-<li><a class="reference internal" href="#a-simple-example-the-iris-dataset">2.1.1. A simple example: the iris dataset</a></li>
-<li><a class="reference internal" href="#handling-categorical-features">2.1.2. Handling categorical features</a></li>
-<li><a class="reference internal" href="#extracting-features-from-unstructured-data">2.1.3. Extracting features from unstructured data</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#supervised-learning-model-fit-x-y">2.2. Supervised Learning: <tt class="docutils literal"><span class="pre">model.fit(X,</span> <span class="pre">y)</span></tt></a><ul>
-<li><a class="reference internal" href="#classification">2.2.1. Classification</a><ul>
-<li><a class="reference internal" href="#a-first-classifier-example-with-scikit-learn">2.2.1.1. A first classifier example with <tt class="docutils literal"><span class="pre">scikit-learn</span></tt></a></li>
-<li><a class="reference internal" href="#notable-implementations-of-classifiers">2.2.1.2. Notable implementations of classifiers</a></li>
-<li><a class="reference internal" href="#sample-application-of-classifiers">2.2.1.3. Sample application of classifiers</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#regression">2.2.2. Regression</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#unsupervised-learning-model-fit-x">2.3. Unsupervised Learning: <tt class="docutils literal"><span class="pre">model.fit(X)</span></tt></a><ul>
-<li><a class="reference internal" href="#dimensionality-reduction-and-visualization">2.3.1. Dimensionality Reduction and visualization</a><ul>
-<li><a class="reference internal" href="#normalization-and-visualization-with-pca">2.3.1.1. Normalization and visualization with PCA</a></li>
-<li><a class="reference internal" href="#other-applications-of-dimensionality-reduction">2.3.1.2. Other applications of dimensionality reduction</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#clustering">2.3.2. Clustering</a><ul>
-<li><a class="reference internal" href="#notable-implementations-of-clustering-models">2.3.2.1. Notable implementations of clustering models</a></li>
-<li><a class="reference internal" href="#applications-of-clustering">2.3.2.2. Applications of clustering</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#linearly-separable-data">2.4. Linearly separable data</a></li>
-<li><a class="reference internal" href="#training-set-test-set-and-overfitting">2.5. Training set, test set and overfitting</a><ul>
-<li><a class="reference internal" href="#the-overfitting-issue">2.5.1. The overfitting issue</a></li>
-<li><a class="reference internal" href="#solutions-to-overfitting">2.5.2. Solutions to overfitting</a></li>
-<li><a class="reference internal" href="#measuring-classification-performance-on-a-test-set">2.5.3. Measuring classification performance on a test set</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#key-takeaway-points">2.6. Key takeaway points</a></li>
-</ul>
-</li>
-</ul>
-
-
-      </div>
 
       <div class="content">
             
@@ -172,7 +121,7 @@ of an individual iris flower.</p>
 <p>Each sample in this dataset is described by 4 features and can
 belong to one of the target classes:</p>
 <blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -195,7 +144,7 @@ belong to one of the target classes:</p>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
+</blockquote>
 <p><tt class="docutils literal"><span class="pre">scikit-learn</span></tt> embeds a copy of the iris CSV file along with a
 helper function to load it into numpy arrays:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
@@ -259,7 +208,7 @@ for each distinct color name that can be valued to <tt class="docutils literal">
 category is matching or <tt class="docutils literal"><span class="pre">0.0</span></tt> if not.</p>
 <p>The enriched iris feature set would hence be in this case:</p>
 <blockquote>
-<div><ol class="arabic simple" start="0">
+<ol class="arabic simple" start="0">
 <li>sepal length in cm</li>
 <li>sepal width in cm</li>
 <li>petal length in cm</li>
@@ -268,7 +217,7 @@ category is matching or <tt class="docutils literal"><span class="pre">0.0</span
 <li>color#blue (1.0 or 0.0)</li>
 <li>color#red (1.0 or 0.0)</li>
 </ol>
-</div></blockquote>
+</blockquote>
 </div>
 <div class="section" id="extracting-features-from-unstructured-data">
 <h3>2.1.3. Extracting features from unstructured data<a class="headerlink" href="#extracting-features-from-unstructured-data" title="Permalink to this headline">¶</a></h3>
@@ -280,7 +229,7 @@ structured representation</strong> such as SQL, CSV, XML, JSON or RDF.</p>
 <p>Here is an overview of strategies to turn unstructed data items
 into arrays of numerical features.</p>
 <blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -320,7 +269,7 @@ single array.</p>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
+</blockquote>
 <p>Practical implementations of such feature extraction strategies
 will be presented in the last sections of this tutorial.</p>
 </div>
@@ -342,7 +291,7 @@ for new a set of samples <tt class="docutils literal"><span class="pre">X_new</s
 <p>Depending on the nature of the target <tt class="docutils literal"><span class="pre">y</span></tt>, supervised learning
 can be given different names:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>If <tt class="docutils literal"><span class="pre">y</span></tt> has values in a fixed set of <strong>categorical outcomes</strong>
 (represented by <strong>integers</strong>) the task to predict <tt class="docutils literal"><span class="pre">y</span></tt> is called
 <strong>classification</strong>.</li>
@@ -350,7 +299,7 @@ can be given different names:</p>
 a temperature, a size...), the task to predict <tt class="docutils literal"><span class="pre">y</span></tt> is called
 <strong>regression</strong>.</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <div class="section" id="classification">
 <h3>2.2.1. Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="a-first-classifier-example-with-scikit-learn">
@@ -430,12 +379,12 @@ of the outcome.  This is the case of logistic regression models:</p>
 </div>
 <p>This means that the model estimates that the sample in <tt class="docutils literal"><span class="pre">X_new</span></tt> has:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>90% likelyhood to belong to the &#8216;setosa&#8217; class</li>
 <li>9% likelyhood to belong to the &#8216;versicolor&#8217; class</li>
 <li>1% likelyhood to belong to the &#8216;virginica&#8217; class</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>Of course, the <tt class="docutils literal"><span class="pre">predict</span></tt> method that outputs the label id of the
 most likely outcome is also available:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">clf2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
@@ -788,11 +737,11 @@ model.</p>
 <tr class="field"><th class="field-name">Exercise:</th><td class="field-body"><p class="first">Fit a model that is able to solve the XOR problem using the GUI:
 the XOR problem is composed of 4 samples:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>2 white samples in the top-left and bottom-right corners</li>
 <li>2 black samples in the bottom-left and top-right corners</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p><strong>Question</strong>: is the XOR problem linearly separable?</p>
 </td>
 </tr>
@@ -809,20 +758,20 @@ accuracy of the best linear model is 50%.</p>
 models is to evaluate the quality of the model on the same data
 used for fitting the model:</p>
 <blockquote>
-<div>If you do this, <strong>you are doing it wrong!</strong></div></blockquote>
+If you do this, <strong>you are doing it wrong!</strong></blockquote>
 <div class="section" id="the-overfitting-issue">
 <h3>2.5.1. The overfitting issue<a class="headerlink" href="#the-overfitting-issue" title="Permalink to this headline">¶</a></h3>
 <p>The problem lies in the fact that some models can be subject to the
 <strong>overfitting</strong> issue: they can <strong>learn the training data by heart</strong>
 without generalizing. The symptoms are:</p>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>the predictive accurracy on the data used for training can be excellent
 (sometimes 100%)</li>
 <li>however, the models do little better than random prediction when facing
 new data that was not part of the training set</li>
 </ul>
-</div></blockquote>
+</blockquote>
 <p>If you evaluate your model on your training data you won&#8217;t be able to tell
 whether your model is overfitting or not.</p>
 </div>
@@ -830,22 +779,22 @@ whether your model is overfitting or not.</p>
 <h3>2.5.2. Solutions to overfitting<a class="headerlink" href="#solutions-to-overfitting" title="Permalink to this headline">¶</a></h3>
 <p>The solution to this issue is twofold:</p>
 <blockquote>
-<div><ol class="arabic simple">
+<ol class="arabic simple">
 <li>Split your data into two sets to detect overfitting situations:</li>
 </ol>
 <blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>one for training and model selection: the <strong>training set</strong></li>
 <li>one for evaluation: the <strong>test set</strong></li>
 </ul>
-</div></blockquote>
+</blockquote>
 <ol class="arabic simple" start="2">
 <li>Avoid overfitting by using simpler models (e.g. linear classifiers
 instead of gaussian kernel SVM) or by increasing the regularization
 parameter of the model if available (see the docstring of the
 model for details)</li>
 </ol>
-</div></blockquote>
+</blockquote>
 <p>An even better option when experimenting with classifiers is to divide
 the data into three sets: training, testing and holdout. You can then
 optimize your features, settings and algorithms for the testing set until
@@ -955,13 +904,22 @@ fail to generalize correctly on test data:<ul>
       </div>
         <div class="clearer"></div>
       </div>
+    <div class="navbar" style="float: left; margin-left: 15pt;">
+    <ul>
+    <li><a href="setup.html" title="1. Tutorial setup"
+	>previous</a></li> |
+    <li><a href="working_with_text_data.html" title="3. Working with text data"
+	>next</a></li>
+    </ul>
+    </div>
+
     </div>
 
     <div class="footer">
         <p style="text-align: center">This tutorial is for scikit-learn
-        version 0.9<p>
+        version 0.7+<p>
         &copy; 2010–2011, scikits.learn developers (BSD License).
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0. Design by <a href="http://webylimonada.com">Web y Limonada</a>.
     </div>
   </body>
 </html>

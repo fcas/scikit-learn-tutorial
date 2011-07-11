@@ -1,0 +1,84 @@
+============================================================
+Unsupervised learning: seeking representations of the data
+============================================================
+
+Clustering: grouping observations together
+============================================
+
+.. topic:: The problem solved in clustering
+
+    Given the iris dataset, if we knew that there were 3 types of iris, but
+    did not have access to a taxonomist to label them: we could try a
+    **clustering task**: split the observations in well-separated group
+    called *clusters*.
+
+..   
+   See the PRNG   
+   >>> import numpy as np
+   >>> np.random.seed(1)
+
+Note that their exists many different clustering criteria and associated
+algorithm. The simplest clustering algorithm is the k-means:
+
+.. image:: k_means_iris_3.png
+    :scale: 70
+    :align: right
+
+
+:: 
+
+    >>> from scikits.learn import cluster, datasets
+    >>> iris = datasets.load_iris()
+    >>> X_iris = iris.data
+    >>> y_iris = iris.target
+
+    >>> k_means = cluster.KMeans(k=3)
+    >>> k_means.fit(X_iris) # doctest: +ELLIPSIS
+    KMeans(verbose=0, k=3, max_iter=300, init='k-means++',...
+    >>> print k_means.labels_[::10]
+    [1 1 1 1 1 0 0 0 0 0 2 2 2 2 2]
+    >>> print y_iris[::10]
+    [0 0 0 0 0 1 1 1 1 1 2 2 2 2 2]
+
+.. |k_means_iris_bad_init| image:: k_means_iris_bad_init.png
+   :scale: 65
+
+.. |k_means_iris_8| image:: k_means_iris_8.png
+   :scale: 65
+
+.. |cluster_iris_truth| image:: cluster_iris_truth.png
+   :scale: 65
+
+.. warning:: 
+   
+    There is absolutely no garanty of recovering a ground truth. First
+    choosing the right number of clusters is hard. Second, the algorithm
+    is sensitive to initialization, and can fall in local minima,
+    although in the `scikits.learn` we play many tricks to mitigate this
+    issue.
+
+    .. list-table::
+        :class: centered
+        
+        * 
+        
+            - |k_means_iris_bad_init|
+
+            - |k_means_iris_8|
+
+            - |cluster_iris_truth|
+
+        * 
+        
+            - **Bad initialization**
+            
+            - **8 clusters**
+            
+            - **Ground truth**
+
+    **Please don't over-interpret clustering results**
+
+
+Decompositions: from a signal to components and loadings
+===========================================================
+
