@@ -336,6 +336,10 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
    model. Leave out the last 10% and test prediction performance on these
    observations.
 
+   .. toctree::
+
+        digits_classification_excercice
+
 Support vector machines (SVMs)
 ================================
 
@@ -452,9 +456,13 @@ creating an decision energy by positioning *kernels* on observations:
 .. topic:: **Excercise**
    :class: green
 
-   Try classifying classes 1 and 2 from the digits dataset with SVMs.
-   Leave out 10% of each class and test prediction performance on these
-   observations.
+   Try classifying classes 1 and 2 from the iris dataset with SVMs, with
+   the 2 first features. Leave out 10% of each class and test prediction
+   performance on these observations.
+
+   .. toctree::
+
+        iris_classification_excercice.rst
 
    **Warning**: the classes are ordered, do not leave out the last 10%,
    you would be testing on only one class.

@@ -1,0 +1,10 @@
+
+Excercice: setting sparsity on diabetes 
+========================================
+
+.. literalinclude:: plot_cv_diabetes.py
+    :lines: 1-13
+
+Solution: :download:`plot_cv_diabetes.py`
+
+
