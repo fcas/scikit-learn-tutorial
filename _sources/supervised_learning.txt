@@ -62,7 +62,6 @@ the estimator) the observation with the closest feature vector.
 
 .. image:: iris_knn.png
    :scale: 90
-   :align: right
 
 ::
 
@@ -123,7 +122,6 @@ Linear regression
 
 .. image:: plot_ols_1.png
    :scale: 40
-   :align: right
 
 Linear models: :math:`y = X\beta + \epsilon`
 
@@ -160,7 +158,6 @@ induces high variance:
 
 .. image:: ols_variance.png
    :scale: 70
-   :align: right
 
 ::
 
@@ -188,7 +185,6 @@ regression:
 
 .. image:: ridge_variance.png
    :scale: 70
-   :align: right
 
 ::
 
@@ -293,7 +289,6 @@ Classification
 
 .. image:: logistic_regression.png
    :scale: 65
-   :align: right
 
 For classification, as in the labeling iris task, linear regression is
 not the right approach, as it will give too much weight to data far from
@@ -314,7 +309,6 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
 
 .. image:: iris_logistic.png
    :scale: 83
-   :align: right
 
 .. topic:: Multiclass classification
 
@@ -369,7 +363,6 @@ used.
 
 .. image:: iris_svm.png
    :scale: 83
-   :align: right
 
 SVMs can be used in regression --SVR (Support Vector Regression)--, or in
 classification --SVC (Support Vector Classification). 
@@ -451,7 +444,6 @@ creating an decision energy by positioning *kernels* on observations:
 
 .. image:: iris_dataset.png
     :scale: 70
-    :align: right
 
 .. topic:: **Excercise**
    :class: green
