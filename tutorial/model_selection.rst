@@ -181,7 +181,7 @@ automatically by cross-validation::
 These estimators are called similarly to their counterparts, with 'CV'
 appended to their name.
 
-.. topic:: **Excercise**
+.. topic:: **Exercise**
    :class: green
 
    On the diabetes dataset, find the optimal regularization parameter
@@ -189,4 +189,6 @@ appended to their name.
 
    **Bonus**: How much can you trust the selection of alpha?
 
+   .. toctree::
 
+      diabetes_cv_excercice
