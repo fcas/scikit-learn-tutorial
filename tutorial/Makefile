@@ -102,8 +102,7 @@ github:
 	@echo "Send to github"
 	$(GHPIMPORT) -p $(BUILDDIR)/html
 	git checkout gh-pages
-	touch ../.nojekyll
-	git commit -a -m "Add nojekyll"
-	git push
+	touch ../.nojekyll && git add ../.nojekyll
+	git commit -a -m "Add nojekyll" && git push
 	git checkout master
 
