@@ -10,7 +10,7 @@ Supervised learning: predicting an output variable from high-dimensional observa
    are trying to predict, usually called `target` or `labels`. Most often, 
    `y` is a 1D array of length `n_samples`. 
    
-   All supervised estimators in the scikits.learn implement a `fit(X, y)`
+   All supervised estimators in the `scikit-learn` implement a `fit(X, y)`
    method to fit the model, and a `predict(X)` method that, given
    unlabeled observations `X`, returns predicts the corresponding labels
    `y`.
@@ -23,7 +23,7 @@ Supervised learning: predicting an output variable from high-dimensional observa
    is to predict a continous target variable, it is said to be a
    **regression** task.
 
-   In the scikits.learn, for classification tasks, `y` is a vector of
+   In the `scikit-learn`, for classification tasks, `y` is a vector of
    integers.
 
 Nearest neighbor and the curse of dimensionality
@@ -122,6 +122,7 @@ Linear regression
 
 .. image:: plot_ols_1.png
    :scale: 40
+   :align: right
 
 Linear models: :math:`y = X\beta + \epsilon`
 
@@ -158,6 +159,7 @@ induces high variance:
 
 .. image:: ols_variance.png
    :scale: 70
+   :align: right
 
 ::
 
@@ -185,6 +187,7 @@ regression:
 
 .. image:: ridge_variance.png
    :scale: 70
+   :align: right
 
 ::
 
@@ -277,9 +280,9 @@ application of Occam's razor: prefer simpler models.
 .. topic:: **Different algorithms for a same problem**
 
     Different algorithms can be used to solve the same mathematical
-    problem. For instance the `Lasso` object in the `scikits.learn`
+    problem. For instance the `Lasso` object in the `scikit-learn`
     solves the lasso regression using a *coordinate descent* method, that
-    is efficient on large datasets. However, the `scikits.learn` also
+    is efficient on large datasets. However, the `scikit-learn` also
     provides the `LassoLARS` object, using the *LARS* which is very
     efficient for problems in which the weight vector estimated is very
     sparse, that is problems with very few observations.
@@ -289,6 +292,7 @@ Classification
 
 .. image:: logistic_regression.png
    :scale: 65
+   :align: right
 
 For classification, as in the labeling iris task, linear regression is
 not the right approach, as it will give too much weight to data far from

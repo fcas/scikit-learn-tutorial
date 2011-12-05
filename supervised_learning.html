@@ -68,7 +68,7 @@
 datasets: the observed data <cite>X</cite>, and an external variable <cite>y</cite> that we
 are trying to predict, usually called <cite>target</cite> or <cite>labels</cite>. Most often,
 <cite>y</cite> is a 1D array of length <cite>n_samples</cite>.</p>
-<p>All supervised estimators in the scikits.learn implement a <cite>fit(X, y)</cite>
+<p>All supervised estimators in the <cite>scikit-learn</cite> implement a <cite>fit(X, y)</cite>
 method to fit the model, and a <cite>predict(X)</cite> method that, given
 unlabeled observations <cite>X</cite>, returns predicts the corresponding labels
 <cite>y</cite>.</p>
@@ -80,7 +80,7 @@ finite labels, in other words to &#8220;name&#8221; the objects observed, the ta
 is said to be a <strong>classification</strong> task. On the opposite, if the goal
 is to predict a continous target variable, it is said to be a
 <strong>regression</strong> task.</p>
-<p>In the scikits.learn, for classification tasks, <cite>y</cite> is a vector of
+<p>In the <cite>scikit-learn</cite>, for classification tasks, <cite>y</cite> is a vector of
 integers.</p>
 </div>
 <div class="section" id="nearest-neighbor-and-the-curse-of-dimensionality">
@@ -168,7 +168,7 @@ variables.</p>
 </div>
 <div class="section" id="linear-regression">
 <h3>2.2.1. Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/plot_ols_1.png"><img alt="_images/plot_ols_1.png" src="_images/plot_ols_1.png" style="width: 320.0px; height: 240.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_ols_1.png"><img align="right" alt="_images/plot_ols_1.png" class="align-right" src="_images/plot_ols_1.png" style="width: 320.0px; height: 240.0px;" /></a>
 <p>Linear models: <img class="math" src="_images/math/32c8722322afdfa1710bdb5541f5aab0f21ad5f4.png" alt="y = X\beta + \epsilon"/></p>
 <blockquote>
 <ul class="simple">
@@ -201,7 +201,7 @@ variables.</p>
 <h3>2.2.2. Shrinkage<a class="headerlink" href="#shrinkage" title="Permalink to this headline">¶</a></h3>
 <p>If there are few data points per dimension, noise in the observations
 induces high variance:</p>
-<a class="reference internal image-reference" href="_images/ols_variance.png"><img alt="_images/ols_variance.png" src="_images/ols_variance.png" style="width: 280.0px; height: 210.0px;" /></a>
+<a class="reference internal image-reference" href="_images/ols_variance.png"><img align="right" alt="_images/ols_variance.png" class="align-right" src="_images/ols_variance.png" style="width: 280.0px; height: 210.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
@@ -222,7 +222,7 @@ induces high variance:</p>
 regression coefficients to zero: any two randomly chosen set of
 observations are likely to be uncorrelated. This is called <em>ridge</em>
 regression:</p>
-<a class="reference internal image-reference" href="_images/ridge_variance.png"><img alt="_images/ridge_variance.png" src="_images/ridge_variance.png" style="width: 280.0px; height: 210.0px;" /></a>
+<a class="reference internal image-reference" href="_images/ridge_variance.png"><img align="right" alt="_images/ridge_variance.png" class="align-right" src="_images/ridge_variance.png" style="width: 280.0px; height: 210.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span> 
@@ -291,9 +291,9 @@ application of Occam&#8217;s razor: prefer simpler models.</p>
 <div class="topic">
 <p class="topic-title first"><strong>Different algorithms for a same problem</strong></p>
 <p>Different algorithms can be used to solve the same mathematical
-problem. For instance the <cite>Lasso</cite> object in the <cite>scikits.learn</cite>
+problem. For instance the <cite>Lasso</cite> object in the <cite>scikit-learn</cite>
 solves the lasso regression using a <em>coordinate descent</em> method, that
-is efficient on large datasets. However, the <cite>scikits.learn</cite> also
+is efficient on large datasets. However, the <cite>scikit-learn</cite> also
 provides the <cite>LassoLARS</cite> object, using the <em>LARS</em> which is very
 efficient for problems in which the weight vector estimated is very
 sparse, that is problems with very few observations.</p>
@@ -301,7 +301,7 @@ sparse, that is problems with very few observations.</p>
 </div>
 <div class="section" id="classification">
 <h3>2.2.4. Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/logistic_regression.png"><img alt="_images/logistic_regression.png" src="_images/logistic_regression.png" style="width: 260.0px; height: 195.0px;" /></a>
+<a class="reference internal image-reference" href="_images/logistic_regression.png"><img align="right" alt="_images/logistic_regression.png" class="align-right" src="_images/logistic_regression.png" style="width: 260.0px; height: 195.0px;" /></a>
 <p>For classification, as in the labeling iris task, linear regression is
 not the right approach, as it will give too much weight to data far from
 the decision frontier. A linear apprach is to fit a sigmoid function, or

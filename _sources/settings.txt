@@ -6,7 +6,7 @@ Statistical learning: the setting and the estimator object in the scikit-learn
 Datasets
 =========
 
-The `scikits.learn` deals with learning information from one or more
+The `scikit-learn` deals with learning information from one or more
 datasets that are represented as 2D arrays. They can be understood as a
 list of multi-dimensional observations. We say that the first axis of
 these arrays is the **samples** axis, while the second is the
@@ -65,7 +65,7 @@ Estimators objects
    ...          pass
    >>> estimator = Estimator()
 
-**Fitting data**: The core object of the `scikits.learn` is the
+**Fitting data**: The core object of the `scikit-learn` is the
 `estimator` object. All estimator objects expose a `fit` method, that
 takes a dataset (2D array)::
 
