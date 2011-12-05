@@ -23,6 +23,13 @@ Scikit-learn tutorial: statistical-learning for sientific data processing
     <http://www.scipy.org>`_, `matplotlib
     <http://matplotlib.sourceforge.net/>`_).
 
+    **References**
+
+    * The `scikit-learn documentation <http://scikit-learn>`_
+    * `Meta-optimize Q&A site <http://metaoptimize.com/qa>`_
+    * Free academic books: `Elements of statistical
+      learning <http://www-stat.stanford.edu/~tibs/ElemStatLearn/>`_, 
+      `Introduction to Information Retrieval <`http://nlp.stanford.edu/IR-book/>`_
 
 .. include:: big_toc_css.rst
 
