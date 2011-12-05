@@ -28,6 +28,17 @@ Scikit-learn tutorial: statistical-learning for sientific data processing
 
 .. note:: This document is meant to be used with **scikit-learn version 0.7+**.
 
+.. warning::
+
+    In scikit-learn release 0.9, the import path has changed from
+    `scikits.learn` to `sklearn`. To import with cross-version 
+    compatibility, use::
+
+        try:
+            from sklearn import something
+        except ImportError:
+            from scikits.learn import something
+
 
 .. toctree::
    :numbered:
