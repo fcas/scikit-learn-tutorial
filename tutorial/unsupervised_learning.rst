@@ -263,7 +263,7 @@ data by projecting on a principal subspace.
     >>> pca = decomposition.PCA()
     >>> pca.fit(X)
     PCA(copy=True, n_components=None, whiten=False)
-    >>> print pca.explained_variance  # doctest: +ELLIPSIS
+    >>> print pca.explained_variance_  # doctest: +ELLIPSIS
     [  2.46782...e+00   8.054...e-01   9.7...e-33]
 
     >>> # As we can see, only the 2 first components are useful

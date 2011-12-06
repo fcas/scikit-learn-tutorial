@@ -48,7 +48,8 @@ Parameters of pipelines can be set using '__' separated parameter names::
     ...                          dict(pca__n_components=n_components,
     ...                               logistic__C=Cs),
     ...                          n_jobs=-1)
-    >>> estimator.fit(X_digits, y_digits)
+    >>> estimator.fit(X_digits, y_digits) # doctest: +ELLIPSIS
+    GridSearchCV(cv=None,...
 
 
 Face recognition with eigenfaces
