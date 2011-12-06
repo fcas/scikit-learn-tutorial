@@ -181,6 +181,15 @@ lasso = linear_model.LassoCV()
 scores = cross_val.cross_val_score(lasso, X, y, n_jobs=-1)
 lasso.fit(X, y)
 print n[lasso.coef_ != 0]
+
+################################################################################
+# Plot the time series
+import pylab as pl
+pl.plot(variation[names == 'Google'].squeeze())
+pl.title('Google stock value')
+pl.xlabel('Time')
+pl.ylabel('Google quote daily increment')
+
 #_, labels, _ = cluster.k_means(X.T, 10)
 #
 #for i in range(labels.max()+1):

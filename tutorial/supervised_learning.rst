@@ -296,7 +296,7 @@ Classification
 
 For classification, as in the labeling iris task, linear regression is
 not the right approach, as it will give too much weight to data far from
-the decision frontier. A linear apprach is to fit a sigmoid function, or
+the decision frontier. A linear approach is to fit a sigmoid function, or
 **logistic** function:
 
 .. math::
@@ -443,7 +443,7 @@ creating an decision energy by positioning *kernels* on observations:
 
 .. topic:: **Interactive example**
 
-   Download: :download:`svm_gui.py`, add data points of both classes with
+   Download: :download:`../examples/svm_gui.py`, add data points of both classes with
    right and left button, fit the model and change parameters and data.
 
 .. image:: iris_dataset.png

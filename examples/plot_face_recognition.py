@@ -34,7 +34,8 @@ X_test_pca = pca.transform(X_test)
 param_grid = dict(C=[1, 5, 10, 50, 100],
                   gamma=[0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1])
 clf = GridSearchCV(SVC(kernel='rbf'), param_grid,
-                   fit_params={'class_weight': 'auto'})
+                   fit_params={'class_weight': 'auto'},
+                   verbose=1)
 clf = clf.fit(X_train_pca, y_train)
 print clf.best_estimator
 
@@ -42,4 +43,14 @@ print clf.best_estimator
 from scikits.learn import metrics
 y_pred = clf.predict(X_test_pca)
 print metrics.classification_report(y_test, y_pred, target_names=target_names)
-print metrics.confusion_matrix(y_test, y_pred, labels=len(target_names))
+print metrics.confusion_matrix(y_test, y_pred,
+                               labels=range(len(target_names)))
+
+
+# Plot the results
+import pylab as pl
+for index, (img, label_true, label_pred) in enumerate(
+                zip(X_test[:8], y_test[:8], y_pred[:8])):
+    pl.subplot(2, 4, index+1).imshow(img.reshape(h, w), cmap=pl.cm.gray)
+    pl.title('%s, prediction: %s' % (label_true, label_pred))
+

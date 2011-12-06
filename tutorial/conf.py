@@ -13,6 +13,19 @@
 
 import sys, os
 
+# if extensions (or modules to document with autodoc) are in another directory,
+# add these directories to sys.path here. if the directory is relative to the
+# documentation root, use os.path.abspath to make it absolute, like shown here.
+sys.path.insert(0, os.path.abspath('sphinxext'))
+
+
+# Try to override the matplotlib configuration as early as possible
+try:
+    import gen_rst
+except:
+    pass
+
+
 # The suffix of source filenames.
 source_suffix = '.rst'
 
@@ -184,5 +197,7 @@ latex_preamble = """
 # If false, no module index is generated.
 #latex_use_modindex = True
 sys.path.append(os.path.abspath('.'))
-extensions = [#'sphinxtoghpages', 
-              'sphinx.ext.doctest', 'sphinx.ext.pngmath']
+extensions = [#'sphinxtoghpages',
+              'sphinx.ext.doctest', 'sphinx.ext.pngmath',
+              'gen_rst'
+              '']

@@ -59,7 +59,7 @@ The dataset used in this example is a preprocessed excerpt of the
 
 .. _LFW: http://vis-www.cs.umass.edu/lfw/
 
-.. literalinclude:: face_recognition.py
+.. literalinclude:: ../examples/plot_face_recognition.py
 
 .. |prediction| image:: plot_face_recognition_1.png
    :scale: 50
@@ -100,7 +100,7 @@ Open problem: stock market structure
 
 Can we predict the variation in stock prices for Google?
 
-.. literalinclude:: stock_market.py
+.. literalinclude:: ../examples/plot_stock_market.py
     :lines: 1-167
 
 

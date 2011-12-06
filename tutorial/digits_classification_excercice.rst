@@ -2,8 +2,8 @@
 Excercice: classification of digits
 ====================================
 
-.. literalinclude:: plot_digits_classification_excercice.py
+.. literalinclude:: ../examples/plot_digits_classification_excercice.py
     :lines: 1-5   
 
-Solution: :download:`plot_digits_classification_excercice.py`
+Solution: :download:`../examples/plot_digits_classification_excercice.py`
 

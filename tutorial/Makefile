@@ -17,6 +17,9 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html html-noplot dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest github
 
+all: html-noplot
+
+
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html        to make standalone HTML files"
