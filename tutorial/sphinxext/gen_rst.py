@@ -109,6 +109,9 @@ def generate_example_rst(app):
         os.makedirs(example_dir)
     if not os.path.exists(root_dir):
         os.makedirs(root_dir)
+        file(os.path.join(root_dir, '__init__.py'), 'w').write(
+                    "import nose\nraise nose.SkipTest\n"
+                    )
 
     # we create an index.rst with all examples
     fhindex = file(os.path.join(root_dir, 'index.rst'), 'w')

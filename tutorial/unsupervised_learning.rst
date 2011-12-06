@@ -297,6 +297,6 @@ a maximum amount of independant information. It is able to recover
     >>> ica = decomposition.FastICA()
     >>> S_ = ica.fit(X).transform(X)  # Get the estimated sources
     >>> A_ = ica.get_mixing_matrix()  # Get estimated mixing matrix
-    >>> assert np.allclose(X, np.dot(S_, A_.T))
+    >>> np.allclose(X, np.dot(S_, A_.T))
     True
 
