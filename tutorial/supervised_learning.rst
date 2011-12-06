@@ -157,7 +157,7 @@ Shrinkage
 If there are few data points per dimension, noise in the observations
 induces high variance:
 
-.. image:: ols_variance.png
+.. image:: auto_examples/images/plot_ols_variance_1.png
    :scale: 70
    :align: right
 
@@ -185,7 +185,7 @@ regression coefficients to zero: any two randomly chosen set of
 observations are likely to be uncorrelated. This is called *ridge*
 regression:
 
-.. image:: ridge_variance.png
+.. image:: auto_examples/images/plot_ridge_variance_1.png 
    :scale: 70
    :align: right
 
@@ -224,13 +224,13 @@ Sparsity
 ----------
 
 
-.. |diabetes_ols_diag| image:: diabetes_ols_diag.png
+.. |diabetes_ols_diag| image:: ../examples/diabetes_ols_diag.png
    :scale: 65
 
-.. |diabetes_ols_x1| image:: diabetes_ols_x1.png
+.. |diabetes_ols_x1| image:: ../examples/diabetes_ols_x1.png
    :scale: 65
 
-.. |diabetes_ols_x2| image:: diabetes_ols_x2.png
+.. |diabetes_ols_x2| image:: ../examples/diabetes_ols_x2.png
    :scale: 65
 
 
@@ -290,7 +290,7 @@ application of Occam's razor: prefer simpler models.
 Classification
 ---------------
 
-.. image:: logistic_regression.png
+.. image:: ../examples/logistic_regression.png
    :scale: 65
    :align: right
 
@@ -311,7 +311,7 @@ the decision frontier. A linear approach is to fit a sigmoid function, or
     LogisticRegression(C=100000.0, intercept_scaling=1, dual=False,
               fit_intercept=True, penalty='l2', tol=0.0001)
 
-.. image:: iris_logistic.png
+.. image:: ../examples/iris_logistic.png
    :scale: 83
 
 .. topic:: Multiclass classification
@@ -351,10 +351,10 @@ Regularization is set by the `C` parameter: with small `C` give
 close to the separating plane; with large `C` all the observations are
 used.
 
-.. |svm_margin| image:: svm_margin.png
+.. |svm_margin| image:: ../examples/svm_margin.png
    :scale: 70
 
-.. |svm_margin_no_penalty| image:: svm_margin_no_penalty.png
+.. |svm_margin_no_penalty| image:: ../examples/svm_margin_no_penalty.png
    :scale: 70
 
 .. rst-class:: centered
@@ -365,7 +365,7 @@ used.
     |svm_margin_no_penalty|       |svm_margin|
     ============================= ==============================
 
-.. image:: iris_svm.png
+.. image:: ../examples/iris_svm.png
    :scale: 83
 
 SVMs can be used in regression --SVR (Support Vector Regression)--, or in
