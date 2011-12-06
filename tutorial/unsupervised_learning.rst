@@ -13,10 +13,10 @@ Clustering: grouping observations together
     called *clusters*.
 
 ..   
-   Set the PRNG   
+   >>> # Set the PRNG   
    >>> import numpy as np
    >>> np.random.seed(1)
-   Import pylab
+   >>> # Import pylab
    >>> import pylab as pl
 
 
@@ -107,7 +107,8 @@ algorithm. The simplest clustering algorithm is the k-means.
     >>> lena = sp.lena()
     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
     >>> k_means = cluster.KMeans(k=5, n_init=1)
-    >>> k_means.fit(X)
+    >>> k_means.fit(X) # doctest: +ELLIPSIS
+    KMeans(copy_x=True, init='k-means++', k=5, ...
     >>> values = k_means.cluster_centers_.squeeze()
     >>> labels = k_means.labels_
     >>> lena_compressed = np.choose(labels, values)
@@ -171,7 +172,8 @@ clustering an image:
     >>> connectivity = grid_to_graph(*lena.shape)
 
     >>> ward = cluster.Ward(n_clusters=30, connectivity=connectivity)
-    >>> ward.fit(X)
+    >>> ward.fit(X) # doctest: +ELLIPSIS
+    Ward(connectivity=...
     >>> labels = np.reshape(ward.labels_, lena.shape)
 
 ..  To generate the image
@@ -201,12 +203,12 @@ transposed data.
 
    >>> agglo = cluster.WardAgglomeration(connectivity=connectivity,
    ...                                   n_clusters=32)
-   >>> agglo.fit(X) # doctests: +ELLIPSIS
-   WardAgglomeration(connectivity=...)
+   >>> agglo.fit(X) # doctest: +ELLIPSIS
+   WardAgglomeration(connectivity=...
    >>> X_reduced = agglo.transform(X)
 
    >>> X_approx = agglo.inverse_transform(X_reduced)
-   >>> images_approx = np.reshape(X_restored, images.shape)
+   >>> images_approx = np.reshape(X_approx, images.shape)
 
 .. topic:: `transform` and `inverse_transform` methods
 
@@ -259,10 +261,10 @@ data by projecting on a principal subspace.
 
     >>> from scikits.learn import decomposition
     >>> pca = decomposition.PCA()
-    PCA(copy=True, n_components=None, whiten=False)
     >>> pca.fit(X)
+    PCA(copy=True, n_components=None, whiten=False)
     >>> print pca.explained_variance_
-    [  2.77227227e+00,   1.14228495e+00,   2.66364138e-32]
+    [  2.46782700e+00   8.05455253e-01   9.76825629e-33]
 
     >>> # As we can see, only the 2 first components are useful
     >>> pca.n_components = 2

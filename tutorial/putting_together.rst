@@ -30,13 +30,14 @@ can predict variables. We can create combined estimators:
     >>> y_digits = digits.target
     >>> pca.fit(X_digits, y_digits)
     PCA(copy=True, n_components=None, whiten=False)
-    >>> pl.plot(pca.explained_variance_)
+    >>> pl.plot(pca.explained_variance_) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
 Parameters of pipelines can be set using '__' separated parameter names::
 
     >>> pipe._set_params(pca__n_components=30)
-    Pipeline(steps=[('pca', PCA(copy=True, n_components=30, whiten=False)), ('logistic', LogisticRegression(C=1.0, intercept_scaling=1, dual=False, fit_intercept=True,
-          penalty='l2', tol=0.0001))])
+    Pipeline(steps=[('pca', PCA(copy=True, n_components=30, whiten=False)), ('logistic', LogisticRegression(C=1.0, dual=False, fit_intercept=True, intercept_scaling=1,
+              penalty='l2', tol=0.0001))])
     >>> pca.n_components
     30
 
@@ -45,7 +46,7 @@ Parameters of pipelines can be set using '__' separated parameter names::
     >>> Cs = np.logspace(-4, 4, 16)
     >>> estimator = GridSearchCV(pipe,
     ...                          dict(pca__n_components=n_components,
-    ...                               logistic_C=logistic_Cs),
+    ...                               logistic_C=Cs),
     ...                          n_jobs=-1)
     >>> estimator.fit(X_digits, y_digits)
 

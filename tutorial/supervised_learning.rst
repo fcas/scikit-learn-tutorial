@@ -137,7 +137,7 @@ Linear models: :math:`y = X\beta + \epsilon`
     >>> from scikits.learn import linear_model
     >>> regr = linear_model.LinearRegression()
     >>> regr.fit(diabetes_X_train, diabetes_y_train)
-    LinearRegression(fit_intercept=True)
+    LinearRegression(copy_X=True, fit_intercept=True, normalize=False)
     >>> print regr.coef_
     [  3.03499549e-01  -2.37639315e+02   5.10530605e+02   3.27736980e+02
       -8.14131709e+02   4.92814588e+02   1.02848452e+02   1.84606489e+02
@@ -210,7 +210,8 @@ We can choose `alpha` to minimize left out error, this time using the
 diabetes dataset, rather than our synthetic data:: 
 
     >>> alphas = np.logspace(-4, -1, 6)
-    >>> print [regr.fit(diabetes_X_train, diabetes_y_train, alpha=alpha
+    >>> print [regr._set_params(alpha=alpha
+    ...             ).fit(diabetes_X_train, diabetes_y_train,
     ...             ).score(diabetes_X_test, diabetes_y_test) for alpha in alphas]
     [0.58511106838835292, 0.58520730154446743, 0.58546775406984897, 0.58555120365039137, 0.58307170855541623, 0.570589994372801]
 
@@ -265,7 +266,7 @@ application of Occam's razor: prefer simpler models.
 :: 
 
     >>> regr = linear_model.Lasso(alpha=.1)
-    >>> print [regr)._set_params(alpha=alpha
+    >>> print [regr._set_params(alpha=alpha
     ...             ).fit(diabetes_X_train, diabetes_y_train
     ...             ).score(diabetes_X_test, diabetes_y_test) 
     ...        for alpha in alphas]
@@ -274,8 +275,8 @@ application of Occam's razor: prefer simpler models.
     >>> best_alpha = alphas[4]
     >>> regr.alpha = best_alpha
     >>> regr.fit(diabetes_X_train, diabetes_y_train)
-    Lasso(precompute='auto', alpha=0.025118864315095794, max_iter=1000,
-       tol=0.0001, fit_intercept=True)
+    Lasso(alpha=0.025118864315095794, copy_X=True, fit_intercept=True,
+       max_iter=1000, normalize=False, precompute='auto', tol=0.0001)
     >>> print regr.coef_   
     [   0.         -212.43764548  517.19478111  313.77959962 -160.8303982    -0.
      -187.19554705   69.38229038  508.66011217   71.84239008]

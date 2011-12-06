@@ -50,12 +50,12 @@ The `scikits.learn` exposes cross-validation generators to generate list
 of indices for this purpose::
 
     >>> from scikits.learn import cross_val
-    >>> k_fold = cross_val.KFold(n=6, k=3)
-    >>> for train_mask, test_mask in k_fold:
-    ...      print 'Train: %s | test: %s' % (train_mask, test_mask) 
-    Train: [False False  True  True  True  True] | test: [ True  True False False False False]
-    Train: [ True  True False False  True  True] | test: [False False  True  True False False]
-    Train: [ True  True  True  True False False] | test: [False False False False  True  True]
+    >>> k_fold = cross_val.KFold(n=6, k=3, indices=True)
+    >>> for train_indices, test_indices in k_fold:
+    ...      print 'Train: %s | test: %s' % (train_indices, test_indices)
+    Train: [2 3 4 5] | test: [0 1]
+    Train: [0 1 4 5] | test: [2 3]
+    Train: [0 1 2 3] | test: [4 5]
 
 The cross-validation can then be implemented easily:: 
 
@@ -127,7 +127,7 @@ estimator during the construction and exposes an estimator API::
     >>> clf = GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
     ...                    n_jobs=-1)
     >>> clf.fit(X_digits[:1000], y_digits[:1000]) # doctest: +ELLIPSIS
-    GridSearchCV(cv=None, ...)
+    GridSearchCV(cv=None,...
     >>> clf.best_score
     0.98899798001594419
     >>> clf.best_estimator.gamma
@@ -175,9 +175,9 @@ automatically by cross-validation::
     >>> y_diabetes = diabetes.target
     >>> lasso.fit(X_diabetes, y_diabetes)
     LassoCV(alphas=array([ 2.14804,  2.00327, ...,  0.0023 ,  0.00215]),
-            copy_X=True, cv=None, eps=0.001, fit_intercept=True, max_iter=1000,
-            n_alphas=100, normalize=False, precompute='auto', tol=0.0001,
-            verbose=False)
+        copy_X=True, cv=None, eps=0.001, fit_intercept=True, max_iter=1000,
+        n_alphas=100, normalize=False, precompute='auto', tol=0.0001,
+        verbose=False)
     >>> # The estimator chose automatically its lambda:
     >>> lasso.alpha
     0.013180196198701137
