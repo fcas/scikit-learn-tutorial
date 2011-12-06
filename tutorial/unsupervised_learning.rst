@@ -13,9 +13,11 @@ Clustering: grouping observations together
     called *clusters*.
 
 ..   
-   See the PRNG   
+   Set the PRNG   
    >>> import numpy as np
    >>> np.random.seed(1)
+   Import pylab
+   >>> import pylab as pl
 
 
 K-means clustering
@@ -38,7 +40,7 @@ algorithm. The simplest clustering algorithm is the k-means.
 
     >>> k_means = cluster.KMeans(k=3)
     >>> k_means.fit(X_iris) # doctest: +ELLIPSIS
-    KMeans(verbose=0, k=3, max_iter=300, init='k-means++',...
+    KMeans(copy_x=True, init='k-means++', k=3, max_iter=300,...
     >>> print k_means.labels_[::10]
     [1 1 1 1 1 0 0 0 0 0 2 2 2 2 2]
     >>> print y_iris[::10]
@@ -168,8 +170,8 @@ clustering an image:
     >>> from scikits.learn.feature_extraction.image import grid_to_graph
     >>> connectivity = grid_to_graph(*lena.shape)
 
-    >>> ward = cluster.Ward(n_clusters=30)
-    >>> ward.fit(X, connectivity=connectivity)
+    >>> ward = cluster.Ward(n_clusters=30, connectivity=connectivity)
+    >>> ward.fit(X)
     >>> labels = np.reshape(ward.labels_, lena.shape)
 
 ..  To generate the image
@@ -199,7 +201,8 @@ transposed data.
 
    >>> agglo = cluster.WardAgglomeration(connectivity=connectivity,
    ...                                   n_clusters=32)
-   >>> agglo.fit(X)
+   >>> agglo.fit(X) # doctests: +ELLIPSIS
+   WardAgglomeration(connectivity=...)
    >>> X_reduced = agglo.transform(X)
 
    >>> X_approx = agglo.inverse_transform(X_reduced)
@@ -256,12 +259,14 @@ data by projecting on a principal subspace.
 
     >>> from scikits.learn import decomposition
     >>> pca = decomposition.PCA()
+    PCA(copy=True, n_components=None, whiten=False)
     >>> pca.fit(X)
     >>> print pca.explained_variance_
     [  2.77227227e+00,   1.14228495e+00,   2.66364138e-32]
 
-    >>> Only the 2 first components are useful
-    >>> X_reduced = pca.fit_transform(X, n_components=2)
+    >>> # As we can see, only the 2 first components are useful
+    >>> pca.n_components = 2
+    >>> X_reduced = pca.fit_transform(X)
     >>> X_reduced.shape
     (100, 2)
 

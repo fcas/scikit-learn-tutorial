@@ -29,6 +29,7 @@ can predict variables. We can create combined estimators:
     >>> X_digits = digits.data
     >>> y_digits = digits.target
     >>> pca.fit(X_digits, y_digits)
+    PCA(copy=True, n_components=None, whiten=False)
     >>> pl.plot(pca.explained_variance_)
 
 Parameters of pipelines can be set using '__' separated parameter names::

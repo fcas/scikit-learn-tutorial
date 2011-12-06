@@ -77,7 +77,8 @@ the estimator) the observation with the closest feature vector.
     >>> from scikits.learn.neighbors import NeighborsClassifier
     >>> knn = NeighborsClassifier()
     >>> knn.fit(iris_X_train, iris_y_train)
-    NeighborsClassifier(n_neighbors=5, leaf_size=20, algorithm='auto')
+    NeighborsClassifier(algorithm='auto', classification_type='knn_vote',
+              leaf_size=30, n_neighbors=5, radius=1.0)
     >>> knn.predict(iris_X_test)
     array([1, 2, 1, 0, 0, 0, 2, 1, 2, 0])
     >>> iris_y_test
@@ -264,13 +265,15 @@ application of Occam's razor: prefer simpler models.
 :: 
 
     >>> regr = linear_model.Lasso(alpha=.1)
-    >>> print [regr.fit(diabetes_X_train, diabetes_y_train, alpha=alpha
+    >>> print [regr)._set_params(alpha=alpha
+    ...             ).fit(diabetes_X_train, diabetes_y_train
     ...             ).score(diabetes_X_test, diabetes_y_test) 
     ...        for alpha in alphas]
     [0.5851191069162196, 0.58524713649060311, 0.58571895391793782, 0.58730094854527282, 0.5887622418309254, 0.58284500296816755]
     
     >>> best_alpha = alphas[4]
-    >>> regr.fit(diabetes_X_train, diabetes_y_train, alpha=best_alpha)
+    >>> regr.alpha = best_alpha
+    >>> regr.fit(diabetes_X_train, diabetes_y_train)
     Lasso(precompute='auto', alpha=0.025118864315095794, max_iter=1000,
        tol=0.0001, fit_intercept=True)
     >>> print regr.coef_   
@@ -308,8 +311,8 @@ the decision frontier. A linear approach is to fit a sigmoid function, or
 
     >>> logistic = linear_model.LogisticRegression(C=1e5)
     >>> logistic.fit(iris_X_train, iris_y_train)
-    LogisticRegression(C=100000.0, intercept_scaling=1, dual=False,
-              fit_intercept=True, penalty='l2', tol=0.0001)
+    LogisticRegression(C=100000.0, dual=False, fit_intercept=True,
+              intercept_scaling=1, penalty='l2', tol=0.0001)
 
 .. image:: ../examples/iris_logistic.png
    :scale: 83
@@ -376,8 +379,8 @@ classification --SVC (Support Vector Classification).
     >>> from scikits.learn import svm
     >>> svc = svm.SVC(kernel='linear')
     >>> svc.fit(iris_X_train, iris_y_train)
-    SVC(kernel='linear', C=1.0, probability=False, degree=3, coef0=0.0, tol=0.001,
-      shrinking=True, gamma=0.0)
+    SVC(C=1.0, cache_size=200, coef0=0.0, degree=3, gamma=0.0, kernel='linear',
+      probability=False, shrinking=True, tol=0.001)
 
 
 .. warning:: **Normalizing data**

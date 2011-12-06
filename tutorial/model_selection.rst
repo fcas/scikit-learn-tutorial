@@ -17,17 +17,17 @@ better**.
     >>> y_digits = digits.target
     >>> svc = svm.SVC()
     >>> svc.fit(X_digits[:-100], y_digits[:-100]).score(X_digits[-100:], y_digits[-100:])
-    0.97999999999999998
+    0.41999999999999998
 
 To get a better measure of prediction accuracy (which we can use as a
 proxy for goodness of fit of the model), we can successively split the
 data in *folds* that we use for training and testing::
 
     >>> import numpy as np
-    >>> X_folds = np.array_split(X_digits, 10)
-    >>> y_folds = np.array_split(y_digits, 10)
+    >>> X_folds = np.array_split(X_digits, 3)
+    >>> y_folds = np.array_split(y_digits, 3)
     >>> scores = list()
-    >>> for k in range(10):
+    >>> for k in range(3):
     ...     # We use 'list' to copy, in order to 'pop' later on
     ...     X_train = list(X_folds)
     ...     X_test  = X_train.pop(k)
@@ -37,7 +37,8 @@ data in *folds* that we use for training and testing::
     ...     y_train = np.concatenate(y_train)
     ...     scores.append(svc.fit(X_train, y_train).score(X_test, y_test))
     >>> print scores
-    [0.9555555555555556, 1.0, 0.93333333333333335, 0.99444444444444446, 0.98333333333333328, 0.98888888888888893, 0.99444444444444446, 0.994413407821229, 0.97206703910614523, 0.96089385474860334]
+    [0.41068447412353926, 0.41569282136894825, 0.42737896494156929]
+
 
 This is called a **K-Fold cross-validation**.
 
@@ -61,14 +62,13 @@ The cross-validation can then be implemented easily::
     >>> kfold = cross_val.KFold(len(X_digits), k=3)
     >>> [svc.fit(X_digits[train], y_digits[train]).score(X_digits[test], y_digits[test])
     ...          for train, test in kfold]
-    [0.95530726256983245, 1.0, 0.93296089385474856, 0.98324022346368711, 0.98882681564245811, 0.98882681564245811, 0.994413407821229, 0.994413407821229, 0.97206703910614523, 0.95161290322580649]
+    [0.41068447412353926, 0.41569282136894825, 0.42737896494156929]
 
 To compute the `score` method of an estimator, the scikits.learn exposes
 a helper function::
 
     >>> cross_val.cross_val_score(svc, X_digits, y_digits, cv=kfold, n_jobs=-1)
-    array([ 0.95530726,  1.        ,  0.93296089,  0.98324022,  0.98882682,
-            0.98882682,  0.99441341,  0.99441341,  0.97206704,  0.9516129 ])
+    array([ 0.41068447,  0.41569282,  0.42737896])
 
 `n_jobs=-1` means that the computation will be dispatched on all the CPUs
 of the computer.
@@ -127,7 +127,7 @@ estimator during the construction and exposes an estimator API::
     >>> clf = GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
     ...                    n_jobs=-1)
     >>> clf.fit(X_digits[:1000], y_digits[:1000]) # doctest: +ELLIPSIS
-    GridSearchCV(n_jobs=-1, ...)
+    GridSearchCV(cv=None, ...)
     >>> clf.best_score
     0.98899798001594419
     >>> clf.best_estimator.gamma
@@ -147,6 +147,7 @@ a stratified 3-fold.
     ::
 
         >>> cross_val.cross_val_score(clf, X_digits, y_digits)
+        array([ 0.9933222 ,  0.98330551,  0.98831386])
 
     Two cross-validation loops are performed in parallel: one by the
     GridSearchCV estimator to set `gamma`, the other one by
@@ -173,9 +174,13 @@ automatically by cross-validation::
     >>> X_diabetes = diabetes.data
     >>> y_diabetes = diabetes.target
     >>> lasso.fit(X_diabetes, y_diabetes)
+    LassoCV(alphas=array([ 2.14804,  2.00327, ...,  0.0023 ,  0.00215]),
+            copy_X=True, cv=None, eps=0.001, fit_intercept=True, max_iter=1000,
+            n_alphas=100, normalize=False, precompute='auto', tol=0.0001,
+            verbose=False)
     >>> # The estimator chose automatically its lambda:
     >>> lasso.alpha
-    0.0075421928471338063
+    0.013180196198701137
 
 These estimators are called similarly to their counterparts, with 'CV'
 appended to their name.
