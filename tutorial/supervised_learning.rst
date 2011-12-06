@@ -60,7 +60,7 @@ the estimator) the observation with the closest feature vector.
 
 **KNN (k nearest neighbors) classification example**:
 
-.. image:: iris_knn.png
+.. image:: ../examples/iris_knn.png
    :scale: 90
 
 ::
@@ -394,13 +394,13 @@ build a decision function that is not linear but that may be for instance
 polynomial. This is done using the *kernel trick* that can be seen as
 creating an decision energy by positioning *kernels* on observations:
 
-.. |svm_kernel_linear| image:: svm_kernel_linear.png
+.. |svm_kernel_linear| image:: ../examples/svm_kernel_linear.png
    :scale: 65
 
-.. |svm_kernel_poly| image:: svm_kernel_poly.png
+.. |svm_kernel_poly| image:: ../examples/svm_kernel_poly.png
    :scale: 65
 
-.. |svm_kernel_rbf| image:: svm_kernel_rbf.png
+.. |svm_kernel_rbf| image:: ../examples/svm_kernel_rbf.png
    :scale: 65
 
 .. rst-class:: centered
@@ -446,7 +446,7 @@ creating an decision energy by positioning *kernels* on observations:
    Download: :download:`../examples/svm_gui.py`, add data points of both classes with
    right and left button, fit the model and change parameters and data.
 
-.. image:: iris_dataset.png
+.. image:: auto_examples/images/plot_iris_dataset_1.png
     :scale: 70
 
 .. topic:: **Excercise**
