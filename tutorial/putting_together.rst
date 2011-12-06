@@ -46,7 +46,7 @@ Parameters of pipelines can be set using '__' separated parameter names::
     >>> Cs = np.logspace(-4, 4, 16)
     >>> estimator = GridSearchCV(pipe,
     ...                          dict(pca__n_components=n_components,
-    ...                               logistic_C=Cs),
+    ...                               logistic__C=Cs),
     ...                          n_jobs=-1)
     >>> estimator.fit(X_digits, y_digits)
 
