@@ -114,7 +114,7 @@ estimator on <strong>new data</strong>. This is why datasets are often split int
 <em>train</em> and <em>test</em> data.</p>
 </div>
 <p><strong>KNN (k nearest neighbors) classification example</strong>:</p>
-<a class="reference internal image-reference" href="_images/iris_knn.png"><img alt="_images/iris_knn.png" src="_images/iris_knn.png" style="width: 360.0px; height: 270.0px;" /></a>
+<a class="reference internal image-reference" href="_images/iris_knn1.png"><img alt="_images/iris_knn1.png" src="_images/iris_knn1.png" style="width: 360.0px; height: 270.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># Split iris data in train and test data</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># A random permutation, to split the data randomly</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -201,7 +201,7 @@ variables.</p>
 <h3>2.2.2. Shrinkage<a class="headerlink" href="#shrinkage" title="Permalink to this headline">¶</a></h3>
 <p>If there are few data points per dimension, noise in the observations
 induces high variance:</p>
-<a class="reference internal image-reference" href="_images/ols_variance.png"><img align="right" alt="_images/ols_variance.png" class="align-right" src="_images/ols_variance.png" style="width: 280.0px; height: 210.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_ols_variance_1.png"><img align="right" alt="_images/plot_ols_variance_1.png" class="align-right" src="_images/plot_ols_variance_1.png" style="width: 280.0px; height: 210.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
@@ -222,7 +222,7 @@ induces high variance:</p>
 regression coefficients to zero: any two randomly chosen set of
 observations are likely to be uncorrelated. This is called <em>ridge</em>
 regression:</p>
-<a class="reference internal image-reference" href="_images/ridge_variance.png"><img align="right" alt="_images/ridge_variance.png" class="align-right" src="_images/ridge_variance.png" style="width: 280.0px; height: 210.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_ridge_variance_1.png"><img align="right" alt="_images/plot_ridge_variance_1.png" class="align-right" src="_images/plot_ridge_variance_1.png" style="width: 280.0px; height: 210.0px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">regr</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=.</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pl</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span> 
@@ -255,7 +255,7 @@ by the ridge regression is called a <strong>regularization</strong>.</p>
 <div class="section" id="sparsity">
 <h3>2.2.3. Sparsity<a class="headerlink" href="#sparsity" title="Permalink to this headline">¶</a></h3>
 <p class="centered"><strong>Fitting only features 5 and 6</strong></p>
-<p class="centered"><a class="reference internal" href="_images/diabetes_ols_diag.png"><img alt="diabetes_ols_diag" src="_images/diabetes_ols_diag.png" style="width: 260.0px; height: 195.0px;" /></a> <a class="reference internal" href="_images/diabetes_ols_x2.png"><img alt="diabetes_ols_x2" src="_images/diabetes_ols_x2.png" style="width: 260.0px; height: 195.0px;" /></a> <a class="reference internal" href="_images/diabetes_ols_x1.png"><img alt="diabetes_ols_x1" src="_images/diabetes_ols_x1.png" style="width: 260.0px; height: 195.0px;" /></a></p>
+<p class="centered"><a class="reference internal" href="_images/diabetes_ols_diag1.png"><img alt="diabetes_ols_diag" src="_images/diabetes_ols_diag1.png" style="width: 260.0px; height: 195.0px;" /></a> <a class="reference internal" href="_images/diabetes_ols_x21.png"><img alt="diabetes_ols_x2" src="_images/diabetes_ols_x21.png" style="width: 260.0px; height: 195.0px;" /></a> <a class="reference internal" href="_images/diabetes_ols_x11.png"><img alt="diabetes_ols_x1" src="_images/diabetes_ols_x11.png" style="width: 260.0px; height: 195.0px;" /></a></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">A representation of the full diabetes dataset would involve 11
@@ -301,10 +301,10 @@ sparse, that is problems with very few observations.</p>
 </div>
 <div class="section" id="classification">
 <h3>2.2.4. Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h3>
-<a class="reference internal image-reference" href="_images/logistic_regression.png"><img align="right" alt="_images/logistic_regression.png" class="align-right" src="_images/logistic_regression.png" style="width: 260.0px; height: 195.0px;" /></a>
+<a class="reference internal image-reference" href="_images/logistic_regression1.png"><img align="right" alt="_images/logistic_regression1.png" class="align-right" src="_images/logistic_regression1.png" style="width: 260.0px; height: 195.0px;" /></a>
 <p>For classification, as in the labeling iris task, linear regression is
 not the right approach, as it will give too much weight to data far from
-the decision frontier. A linear apprach is to fit a sigmoid function, or
+the decision frontier. A linear approach is to fit a sigmoid function, or
 <strong>logistic</strong> function:</p>
 <div class="math">
 <p><img src="_images/math/51e7cf02ac534bdafa3b0b79699d3b96f41c7a47.png" alt="y = \textrm{sigmoid}(X\beta - \textrm{offset}) + \epsilon =
@@ -315,7 +315,7 @@ the decision frontier. A linear apprach is to fit a sigmoid function, or
 <span class="go">          fit_intercept=True, penalty=&#39;l2&#39;, tol=0.0001)</span>
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="_images/iris_logistic.png"><img alt="_images/iris_logistic.png" src="_images/iris_logistic.png" style="width: 332.0px; height: 249.0px;" /></a>
+<a class="reference internal image-reference" href="_images/iris_logistic1.png"><img alt="_images/iris_logistic1.png" src="_images/iris_logistic1.png" style="width: 332.0px; height: 249.0px;" /></a>
 <div class="topic">
 <p class="topic-title first">Multiclass classification</p>
 <p>If you have several classes to predict, an option often used is to fit
@@ -363,12 +363,12 @@ used.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><a class="reference internal" href="_images/svm_margin_no_penalty.png"><img alt="svm_margin_no_penalty" src="_images/svm_margin_no_penalty.png" style="width: 280.0px; height: 210.0px;" /></a></td>
-<td><a class="reference internal" href="_images/svm_margin.png"><img alt="svm_margin" src="_images/svm_margin.png" style="width: 280.0px; height: 210.0px;" /></a></td>
+<tr><td><a class="reference internal" href="_images/svm_margin_no_penalty1.png"><img alt="svm_margin_no_penalty" src="_images/svm_margin_no_penalty1.png" style="width: 280.0px; height: 210.0px;" /></a></td>
+<td><a class="reference internal" href="_images/svm_margin1.png"><img alt="svm_margin" src="_images/svm_margin1.png" style="width: 280.0px; height: 210.0px;" /></a></td>
 </tr>
 </tbody>
 </table>
-<a class="reference internal image-reference" href="_images/iris_svm.png"><img alt="_images/iris_svm.png" src="_images/iris_svm.png" style="width: 332.0px; height: 249.0px;" /></a>
+<a class="reference internal image-reference" href="_images/iris_svm1.png"><img alt="_images/iris_svm1.png" src="_images/iris_svm1.png" style="width: 332.0px; height: 249.0px;" /></a>
 <p>SVMs can be used in regression &#8211;SVR (Support Vector Regression)&#8211;, or in
 classification &#8211;SVC (Support Vector Classification).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scikits.learn</span> <span class="kn">import</span> <span class="n">svm</span>
@@ -403,9 +403,9 @@ creating an decision energy by positioning <em>kernels</em> on observations:</p>
 <td><strong>Polynomial kernel</strong></td>
 <td><strong>RBF kernel (Radial Basis Function)</strong></td>
 </tr>
-<tr><td><a class="reference internal" href="_images/svm_kernel_linear.png"><img alt="svm_kernel_linear" src="_images/svm_kernel_linear.png" style="width: 260.0px; height: 195.0px;" /></a></td>
-<td><a class="reference internal" href="_images/svm_kernel_poly.png"><img alt="svm_kernel_poly" src="_images/svm_kernel_poly.png" style="width: 260.0px; height: 195.0px;" /></a></td>
-<td><a class="reference internal" href="_images/svm_kernel_rbf.png"><img alt="svm_kernel_rbf" src="_images/svm_kernel_rbf.png" style="width: 260.0px; height: 195.0px;" /></a></td>
+<tr><td><a class="reference internal" href="_images/svm_kernel_linear1.png"><img alt="svm_kernel_linear" src="_images/svm_kernel_linear1.png" style="width: 260.0px; height: 195.0px;" /></a></td>
+<td><a class="reference internal" href="_images/svm_kernel_poly1.png"><img alt="svm_kernel_poly" src="_images/svm_kernel_poly1.png" style="width: 260.0px; height: 195.0px;" /></a></td>
+<td><a class="reference internal" href="_images/svm_kernel_rbf1.png"><img alt="svm_kernel_rbf" src="_images/svm_kernel_rbf1.png" style="width: 260.0px; height: 195.0px;" /></a></td>
 </tr>
 <tr><td><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">svc</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s">&#39;linear&#39;</span><span class="p">)</span>
 </pre></div>
@@ -428,10 +428,10 @@ creating an decision energy by positioning <em>kernels</em> on observations:</p>
 </table>
 <div class="topic">
 <p class="topic-title first"><strong>Interactive example</strong></p>
-<p>Download: <a class="reference download internal" href="_downloads/svm_gui.py"><tt class="xref download docutils literal"><span class="pre">svm_gui.py</span></tt></a>, add data points of both classes with
+<p>Download: <a class="reference download internal" href="_downloads/svm_gui1.py"><tt class="xref download docutils literal"><span class="pre">../examples/svm_gui.py</span></tt></a>, add data points of both classes with
 right and left button, fit the model and change parameters and data.</p>
 </div>
-<a class="reference internal image-reference" href="_images/iris_dataset.png"><img alt="_images/iris_dataset.png" src="_images/iris_dataset.png" style="width: 280.0px; height: 210.0px;" /></a>
+<a class="reference internal image-reference" href="_images/plot_iris_dataset_1.png"><img alt="_images/plot_iris_dataset_1.png" src="_images/plot_iris_dataset_1.png" style="width: 280.0px; height: 210.0px;" /></a>
 <div class="green topic">
 <p class="topic-title first"><strong>Excercise</strong></p>
 <p>Try classifying classes 1 and 2 from the iris dataset with SVMs, with

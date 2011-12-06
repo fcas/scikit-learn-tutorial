@@ -1,0 +1,23 @@
+
+
+.. _example_plot_digits_classification_excercice.py:
+
+
+
+
+.. rst-class:: horizontal
+
+
+
+**Script output**::
+
+  KNN score: 0.961111111111
+  LogisticRegression score: 0.938888888889
+
+
+
+**Python source code:** :download:`plot_digits_classification_excercice.py <plot_digits_classification_excercice.py>`
+
+.. literalinclude:: plot_digits_classification_excercice.py
+    :lines: 2-
+    

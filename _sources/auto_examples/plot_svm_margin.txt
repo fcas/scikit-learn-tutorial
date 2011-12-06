@@ -1,0 +1,18 @@
+
+
+.. _example_plot_svm_margin.py:
+
+
+
+
+.. image:: images/plot_svm_margin_1.png
+    :align: center
+
+
+
+
+**Python source code:** :download:`plot_svm_margin.py <plot_svm_margin.py>`
+
+.. literalinclude:: plot_svm_margin.py
+    :lines: 2-
+    

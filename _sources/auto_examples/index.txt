@@ -1,0 +1,279 @@
+
+.. raw:: html
+
+    <style type="text/css">
+    .figure {
+        float: left;
+        margin: 10px;
+        width: auto;
+        height: 200px;
+        width: 180px;
+    }
+
+    .figure img {
+        display: inline;
+        }
+
+    .figure .caption {
+        width: 170px;
+        text-align: center !important;
+    }
+    </style>
+
+Examples
+========
+
+.. _examples-index:
+
+
+
+Example files for the scikit-learn statistical learning tutorial
+
+
+
+
+.. figure:: ./images/thumb/names..png
+   :target: ./names..html
+
+   :ref:`example_names.npy`
+
+.. toctree::
+   :hidden:
+
+   ./names.
+
+.. figure:: ./images/thumb/plot_cluster_iris.png
+   :target: ./plot_cluster_iris.html
+
+   :ref:`example_plot_cluster_iris.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_cluster_iris
+
+.. figure:: ./images/thumb/plot_cv_diabetes.png
+   :target: ./plot_cv_diabetes.html
+
+   :ref:`example_plot_cv_diabetes.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_cv_diabetes
+
+.. figure:: ./images/thumb/plot_cv_digits.png
+   :target: ./plot_cv_digits.html
+
+   :ref:`example_plot_cv_digits.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_cv_digits
+
+.. figure:: ./images/thumb/plot_digits_agglomeration.png
+   :target: ./plot_digits_agglomeration.html
+
+   :ref:`example_plot_digits_agglomeration.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_digits_agglomeration
+
+.. figure:: ./images/thumb/plot_digits_classification_excercice.png
+   :target: ./plot_digits_classification_excercice.html
+
+   :ref:`example_plot_digits_classification_excercice.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_digits_classification_excercice
+
+.. figure:: ./images/thumb/plot_digits_pipe.png
+   :target: ./plot_digits_pipe.html
+
+   :ref:`example_plot_digits_pipe.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_digits_pipe
+
+.. figure:: ./images/thumb/plot_face_recognition.png
+   :target: ./plot_face_recognition.html
+
+   :ref:`example_plot_face_recognition.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_face_recognition
+
+.. figure:: ./images/thumb/plot_iris_classifiers.png
+   :target: ./plot_iris_classifiers.html
+
+   :ref:`example_plot_iris_classifiers.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_iris_classifiers
+
+.. figure:: ./images/thumb/plot_iris_dataset.png
+   :target: ./plot_iris_dataset.html
+
+   :ref:`example_plot_iris_dataset.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_iris_dataset
+
+.. figure:: ./images/thumb/plot_iris_exercice.png
+   :target: ./plot_iris_exercice.html
+
+   :ref:`example_plot_iris_exercice.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_iris_exercice
+
+.. figure:: ./images/thumb/plot_lena_compress.png
+   :target: ./plot_lena_compress.html
+
+   :ref:`example_plot_lena_compress.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_lena_compress
+
+.. figure:: ./images/thumb/plot_logistic.png
+   :target: ./plot_logistic.html
+
+   :ref:`example_plot_logistic.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_logistic
+
+.. figure:: ./images/thumb/plot_ols_3d.png
+   :target: ./plot_ols_3d.html
+
+   :ref:`example_plot_ols_3d.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_ols_3d
+
+.. figure:: ./images/thumb/plot_ols_variance.png
+   :target: ./plot_ols_variance.html
+
+   :ref:`example_plot_ols_variance.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_ols_variance
+
+.. figure:: ./images/thumb/plot_pca_iris.png
+   :target: ./plot_pca_iris.html
+
+   :ref:`example_plot_pca_iris.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_pca_iris
+
+.. figure:: ./images/thumb/plot_ridge_variance.png
+   :target: ./plot_ridge_variance.html
+
+   :ref:`example_plot_ridge_variance.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_ridge_variance
+
+.. figure:: ./images/thumb/plot_stock_market.png
+   :target: ./plot_stock_market.html
+
+   :ref:`example_plot_stock_market.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_stock_market
+
+.. figure:: ./images/thumb/plot_svm_kernels.png
+   :target: ./plot_svm_kernels.html
+
+   :ref:`example_plot_svm_kernels.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_svm_kernels
+
+.. figure:: ./images/thumb/plot_svm_margin.png
+   :target: ./plot_svm_margin.html
+
+   :ref:`example_plot_svm_margin.py`
+
+.. toctree::
+   :hidden:
+
+   ./plot_svm_margin
+
+.. figure:: ./images/thumb/variation..png
+   :target: ./variation..html
+
+   :ref:`example_variation.npy`
+
+.. toctree::
+   :hidden:
+
+   ./variation.
+
+.. figure:: ./images/thumb/_plot_pca_3d.png
+   :target: ./_plot_pca_3d.html
+
+   :ref:`example__plot_pca_3d.py`
+
+.. toctree::
+   :hidden:
+
+   ./_plot_pca_3d
+
+.. figure:: ./images/thumb/_plot_pca_3d_mayavi.png
+   :target: ./_plot_pca_3d_mayavi.html
+
+   :ref:`example__plot_pca_3d_mayavi.py`
+
+.. toctree::
+   :hidden:
+
+   ./_plot_pca_3d_mayavi
+
+.. figure:: ./images/thumb/svm_gui.png
+   :target: ./svm_gui.html
+
+   :ref:`example_svm_gui.py`
+
+.. toctree::
+   :hidden:
+
+   ./svm_gui
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+    

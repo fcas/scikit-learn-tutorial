@@ -1,0 +1,18 @@
+
+
+.. _example_plot_ridge_variance.py:
+
+
+
+
+.. image:: images/plot_ridge_variance_1.png
+    :align: center
+
+
+
+
+**Python source code:** :download:`plot_ridge_variance.py <plot_ridge_variance.py>`
+
+.. literalinclude:: plot_ridge_variance.py
+    :lines: 2-
+    
