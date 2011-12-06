@@ -2,8 +2,9 @@
 Scikit-learn tutorial: statistical-learning for sientific data processing
 ==========================================================================
 
+**Online version:** http://gaelvaroquaux.github.com/scikit-learn-tutorial/
 
-**http://gaelvaroquaux.github.com/scikit-learn-tutorial/**
+**Zip file for off-line browsing:** https://github.com/GaelVaroquaux/scikit-learn-tutorial/zipball/gh-pages
 
 .. topic:: Statistical learning 
 
@@ -22,14 +23,6 @@ Scikit-learn tutorial: statistical-learning for sientific data processing
     packages (`numpy <http://www.scipy.org>`_, `scipy
     <http://www.scipy.org>`_, `matplotlib
     <http://matplotlib.sourceforge.net/>`_).
-
-    **References**
-
-    * The `scikit-learn documentation <http://scikit-learn>`_
-    * `Meta-optimize Q&A site <http://metaoptimize.com/qa>`_
-    * Free academic books: `Elements of statistical
-      learning <http://www-stat.stanford.edu/~tibs/ElemStatLearn/>`_, 
-      `Introduction to Information Retrieval <`http://nlp.stanford.edu/IR-book/>`_
 
 .. include:: big_toc_css.rst
 
